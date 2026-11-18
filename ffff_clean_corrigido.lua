@@ -2,34 +2,27 @@
 -- By ZeroVector101
 
 local hookfunction2, require2, v3, v4, str, num, num2, num3, characterAdded, v5, str2, num4, num5, num6, num7, position, v6, str3, str4, str5, str6, str7, cframe, str8, player2, num8, num9, num10, str9, str10, str11, str12, str13, str14, str15, str16, str17, str18, v7, tbl, str19, str20, str21, str22, str23, str24, str25, str26, str27, str28, str29, str30, str31, str32, str33, str34, str35, str36, flag, flag2, flag3, flag4, num11, str37
-hookfunction2 = hookfunction
-require2 = require
-v3 = game
-v4 = v3
-v3 = v3.GetService
-str = "ReplicatedStorage"
-v3 = v3(v4, str)
-v3 = v3.Effect
-v3 = v3.Container
-v3 = v3.Death
-require2 = require2(v3)
-function v3()
+-- Optional death/respawn VFX hooks. Some Blox Fruits versions expose
+-- ReplicatedStorage.Effect as a ModuleScript, not as a Container folder.
+-- Skip the hooks when their expected ModuleScripts do not exist.
+local function tryHookEffect(name)
+    local storage = game:GetService("ReplicatedStorage")
+    local effect = storage:FindFirstChild("Effect")
+    local container = effect and effect:FindFirstChild("Container")
+    local module = container and container:FindFirstChild(name)
+    if not (module and module:IsA("ModuleScript")) then
+        return
+    end
+    if type(hookfunction) ~= "function" then
+        return
+    end
+    local ok, result = pcall(require, module)
+    if ok and type(result) == "function" then
+        pcall(hookfunction, result, function() end)
+    end
 end
-hookfunction2(require2, v3)
-hookfunction2 = hookfunction
-require2 = require
-v3 = game
-v4 = v3
-v3 = v3.GetService
-str = "ReplicatedStorage"
-v3 = v3(v4, str)
-v3 = v3.Effect
-v3 = v3.Container
-v3 = v3.Respawn
-require2 = require2(v3)
-function v3()
-end
-hookfunction2(require2, v3)
+tryHookEffect("Death")
+tryHookEffect("Respawn")
 hookfunction2 = game
 hookfunction2 = hookfunction2.PlaceId
 hookfunction2 = hookfunction2 == 2753915549
