@@ -7835,6 +7835,34 @@ My Boat (%s)%s
     })
     desgracaRuntime.Window = window
 
+    -- The third-party niulai UI may use a hardcoded header, ignoring Title.
+    -- Correct only the visible project-title label, without changing menu tabs.
+    spawn(function()
+      local roots = { localPlayer:FindFirstChildOfClass("PlayerGui") }
+      local ok, hiddenGui = pcall(function()
+        return type(gethui) == "function" and gethui() or game:GetService("CoreGui")
+      end)
+      if ok and typeof(hiddenGui) == "Instance" then
+        table.insert(roots, hiddenGui)
+      end
+      for attempt = 1, 35 do
+        if not desgracaRuntime.Running then return end
+        for _, rootGui in ipairs(roots) do
+          if rootGui then
+            for _, element in ipairs(rootGui:GetDescendants()) do
+              if element:IsA("TextLabel") or element:IsA("TextButton") then
+                local titleText = element.Text
+                if type(titleText) == "string" and titleText:find("Quantum Onyx Project", 1, true) then
+                  element.Text = titleText:gsub("Quantum Onyx Project", "Desgraça Hub")
+                end
+              end
+            end
+          end
+        end
+        task.wait(0.3)
+      end
+    end)
+
     local v518 = {
       Home = window:AddTab("Home", "home-quantum"),
       Sub = window:AddTab("Sub Farm", "swords-quantum"),
