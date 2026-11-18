@@ -7833,6 +7833,59 @@ My Boat (%s)%s
     })
     desgracaRuntime.Window = window
 
+    -- Ctrl alterna a visibilidade do ScreenGui do Desgraça Hub.
+    -- Encontra a GUI pelo titulo; nao modifica a GUI do Blox Fruits.
+    local desgracaVisible = true
+    local desgracaTargetGui = nil
+
+    local function FindDesgracaScreenGui()
+      if desgracaTargetGui and desgracaTargetGui.Parent then
+        return desgracaTargetGui
+      end
+      local roots = {
+        localPlayer:FindFirstChildOfClass("PlayerGui"),
+        game:GetService("CoreGui"),
+      }
+      pcall(function()
+        if type(gethui) == "function" then
+          table.insert(roots, gethui())
+        end
+      end)
+      for _, container in ipairs(roots) do
+        if container then
+          for _, label in ipairs(container:GetDescendants()) do
+            if label:IsA("TextLabel") or label:IsA("TextButton") then
+              local title = label.Text
+              if type(title) == "string"
+                  and (title:find("Desgraça Hub", 1, true)
+                    or title:find("Quantum Onyx Project", 1, true)) then
+                local screen = label:FindFirstAncestorOfClass("ScreenGui")
+                if screen then
+                  desgracaTargetGui = screen
+                  return screen
+                end
+              end
+            end
+          end
+        end
+      end
+      return nil
+    end
+
+    TrackDesgracaConnection(userInputService.InputBegan:Connect(function(input, processed)
+      if not desgracaRuntime.Running or processed then return end
+      if input.KeyCode ~= Enum.KeyCode.LeftControl
+          and input.KeyCode ~= Enum.KeyCode.RightControl then return end
+      if userInputService:GetFocusedTextBox() then return end
+      local screen = FindDesgracaScreenGui()
+      if not screen then
+        warn("[Desgraça Hub] Ctrl: interface nao localizada; titulo indisponivel")
+        return
+      end
+      desgracaVisible = not screen.Enabled
+      screen.Enabled = desgracaVisible
+    end))
+
     -- The external UI may ignore the CreateWindow title, render late,
     -- or create its ScreenGui in a different parent. Keep the header correct.
     spawn(function()
