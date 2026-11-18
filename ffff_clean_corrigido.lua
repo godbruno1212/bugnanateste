@@ -6290,8 +6290,8 @@ v5 = loadstring
 local v15 = game
 str2 = v15
 local v16, v18, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v40, v42, v44, v46, v47, v48, v50, v52, v54, v56, v58, v61, v65, v70, v72, v74, v76, v78, v80, v82, v85, v88, v90, v94, v97, v99, v103, v106, v109, v113, v115, v117, v119, v123, v129, v132, v135, v138, v141, v144, v147, v150, v153, v156, v163, v167, v174, v178, v182, v186, v190, v194, v198, v202, v206, v210, v214, v218, v222, v226, v230, v234, v238, v242, v246, v250, v254, v258, v262, v266, v270, v274, v278, v282, v286, v290, v294, v298, v302, v306, v310, v314, v318, v322, v326, v330, v334, v338, v342, v346, v350, v354, v358, v362, v366, v370, v374
-v16, str2, v18, num4, num5, num6, num7, position, v6, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, str3, str4, v40, str5, v42, str6, v44, str7, cframe, v46, v47, v48, str8, v50, v52, v54, v56, v58, player2, v61, num8, num9, num10, v65, str9, str10, str11, str12, str13, str14, str15, v70, str16, str17, str18, v7, tbl, str19, v72, v74, v76, v78, str20, v80, v82, str21, str22, v85, v88, v90, v94, str23, str24, str25, v97, v99, v103, str26, str27, str28, str29, v106, str30, v109, str31, v113, v115, v117, v119, v123, str32, str33, v129, v132, v135, v138, v141, v144, v147, v150, v153, v156, str34, str35, str36, flag, flag2, flag3, flag4, num11, v163, v167, v174, str37, v178, v182, v186, v190, v194, v198, v202, v206, v210, v214, v218, v222, v226, v230, v234, v238, v242, v246, v250, v254, v258, v262, v266, v270, v274, v278, v282, v286, v290, v294, v298, v302, v306, v310, v314, v318, v322, v326, v330, v334, v338, v342, v346, v350, v354, v358, v362, v366, v370, v374 = v15.HttpGet(str2, "https://raw.githubusercontent.com/farehamhz/RedzLib/main/RedzLib")
-v5 = v5(v16, str2, v18, num4, num5, num6, num7, position, v6, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, str3, str4, v40, str5, v42, str6, v44, str7, cframe, v46, v47, v48, str8, v50, v52, v54, v56, v58, player2, v61, num8, num9, num10, v65, str9, str10, str11, str12, str13, str14, str15, v70, str16, str17, str18, v7, tbl, str19, v72, v74, v76, v78, str20, v80, v82, str21, str22, v85, v88, v90, v94, str23, str24, str25, v97, v99, v103, str26, str27, str28, str29, v106, str30, v109, str31, v113, v115, v117, v119, v123, str32, str33, v129, v132, v135, v138, v141, v144, v147, v150, v153, v156, str34, str35, str36, flag, flag2, flag3, flag4, num11, v163, v167, v174, str37, v178, v182, v186, v190, v194, v198, v202, v206, v210, v214, v218, v222, v226, v230, v234, v238, v242, v246, v250, v254, v258, v262, v266, v270, v274, v278, v282, v286, v290, v294, v298, v302, v306, v310, v314, v318, v322, v326, v330, v334, v338, v342, v346, v350, v354, v358, v362, v366, v370, v374)
+v16 = v15.HttpGet(str2, "https://raw.githubusercontent.com/farehamhz/RedzLib/main/RedzLib")
+v5 = v5(v16)
 v5 = v5()
 local v17 = v5
 v5 = v5.MakeWindow
@@ -7748,8 +7748,8 @@ cframe(function()
                 if string.len(result2) == 86 then
                     str7:Set("Killed : " .. string.sub(result2, 39, 39) .. " / 500")
                 else
-                    str7:Set("Prince King Spawned â
-")
+                                str7:Set("Prince King Spawned")
+
                 end
             else
                 str7:Set("Killed : " .. string.sub(result2, 39, 40) .. " / 500")
@@ -8273,8 +8273,8 @@ task.spawn(function()
                         end
                     end
                     if not jump then
-                        str8:Set("Status: Boss Spawn â
-")
+                                str8:Set("Status: Boss Spawn")
+
                     end
                 else
                     jump = true
@@ -11676,8 +11676,8 @@ function str11()
         end
         pcall(function()
             if game:GetService("Workspace").Map:FindFirstChild("PrehistoricIsland") then
-                str9:Set("Prehistoric Island Spawning â
-")
+                                str9:Set("Prehistoric Island Spawning")
+
             else
                 str9:Set("Prehistoric Island Not Spawn â")
             end
@@ -12257,8 +12257,8 @@ task.spawn(function()
         end
         pcall(function()
             if game:GetService("Workspace").Map:FindFirstChild("KitsuneIsland") then
-                str20:Set("Kitsune Island Spawning â
-")
+                                str20:Set("Kitsune Island Spawning")
+
             else
                 str20:Set("Kitsune Island Not Spawn â")
             end
@@ -12901,8 +12901,8 @@ str22(function()
             if not game.Workspace._WorldOrigin.Locations:FindFirstChild("Mirage Island") then
                 str21:Set("Mirage Island Not Spawn â")
             else
-                str21:Set("Mirage Island Spawning â
-")
+                                str21:Set("Mirage Island Spawning")
+
             end
         end)
     end
@@ -15172,8 +15172,8 @@ local section28 = tab12:AddSection({str34})
 str34 = {}
 str35 = "Unban Fast Attack - M1 Fruit"
 str34.Title = str35
-str35 = "On: â
-"
+    str35 = "On"
+
 str34.Content = str35
 tab12:AddParagraph(str34)
 local v159 = game
