@@ -5520,10 +5520,10 @@ function topos(cframe2)
     if player.Character then
         if 0 < player.Character.Humanoid.Health then
             if player.Character:FindFirstChild("HumanoidRootPart") then
-                local distance = (cframe2.Position - player.Character.HumanoidRootPart.Position).Magnitude
-                if not cframe2 then
+                if typeof(cframe2) ~= "CFrame" then
                     return
                 end
+                local distance = (cframe2.Position - player.Character.HumanoidRootPart.Position).Magnitude
                 local nearestTeleporter = CheckNearestTeleporter(cframe2)
                 if nearestTeleporter then
                     local requestEntrance2 = requestEntrance
@@ -5547,17 +5547,15 @@ function topos(cframe2)
                     cframe3 = cframe3(player)
                     cframe3 = cframe3.CFrame
                     v.CFrame = cframe3
-                    cframe3 = v
-                    cframe3:GetPropertyChangedSignal("CFrame"):Connect(function()
-                        if not num3 then
+                    local partTele = v
+                    partTele:GetPropertyChangedSignal("CFrame"):Connect(function()
+                        if not num3 or not partTele.Parent then
                             return
                         end
-                        task.wait()
-                        if player.Character then
-                            if player.Character:FindFirstChild("HumanoidRootPart") then
-                                local hrp = WaitHRP(player)
-                                hrp.CFrame = cframe3.CFrame
-                            end
+                        local character = player.Character
+                        local hrp = character and character:FindFirstChild("HumanoidRootPart")
+                        if hrp then
+                            hrp.CFrame = partTele.CFrame
                         end
                     end)
                 end
