@@ -7835,31 +7835,61 @@ My Boat (%s)%s
     })
     desgracaRuntime.Window = window
 
-    -- The third-party niulai UI may use a hardcoded header, ignoring Title.
-    -- Correct only the visible project-title label, without changing menu tabs.
+    -- The external UI may ignore the CreateWindow title, render late,
+    -- or create its ScreenGui in a different parent. Keep the header correct.
     spawn(function()
-      local roots = { localPlayer:FindFirstChildOfClass("PlayerGui") }
-      local ok, hiddenGui = pcall(function()
-        return type(gethui) == "function" and gethui() or game:GetService("CoreGui")
-      end)
-      if ok and typeof(hiddenGui) == "Instance" then
-        table.insert(roots, hiddenGui)
+      local previousRoots = {}
+      local inspected = setmetatable({}, { __mode = "k" })
+      local replacementCount = 0
+
+      local function replaceTitle(element)
+        if not (element:IsA("TextLabel") or element:IsA("TextButton")
+            or element:IsA("TextBox")) then return end
+        local ok, current = pcall(function() return element.Text end)
+        if not ok or type(current) ~= "string" then return end
+        local updated, count = current:gsub("Quantum Onyx Project", "Desgraça Hub")
+        if count > 0 then
+          pcall(function() element.Text = updated end)
+          replacementCount += count
+        end
       end
-      for attempt = 1, 35 do
-        if not desgracaRuntime.Running then return end
-        for _, rootGui in ipairs(roots) do
-          if rootGui then
-            for _, element in ipairs(rootGui:GetDescendants()) do
-              if element:IsA("TextLabel") or element:IsA("TextButton") then
-                local titleText = element.Text
-                if type(titleText) == "string" and titleText:find("Quantum Onyx Project", 1, true) then
-                  element.Text = titleText:gsub("Quantum Onyx Project", "Desgraça Hub")
-                end
-              end
+
+      local function watchRoot(root)
+        if not root or typeof(root) ~= "Instance" or inspected[root] then return end
+        inspected[root] = true
+        for _, descendant in ipairs(root:GetDescendants()) do
+          replaceTitle(descendant)
+        end
+        TrackDesgracaConnection(root.DescendantAdded:Connect(function(descendant)
+          if desgracaRuntime.Running then replaceTitle(descendant) end
+        end))
+        previousRoots[#previousRoots + 1] = root
+      end
+
+      -- Always check BOTH gethui and CoreGui (they may not be the same).
+      local core = game:GetService("CoreGui")
+      local gui = localPlayer:FindFirstChildOfClass("PlayerGui")
+      watchRoot(gui)
+      watchRoot(core)
+      pcall(function()
+        if type(gethui) == "function" then watchRoot(gethui()) end
+      end)
+      if typeof(window) == "Instance" then watchRoot(window) end
+
+      local lastNoticeAt = 0
+      while desgracaRuntime.Running do
+        for _, root in ipairs(previousRoots) do
+          if root and root.Parent then
+            for _, descendant in ipairs(root:GetDescendants()) do
+              replaceTitle(descendant)
             end
           end
         end
-        task.wait(0.3)
+        if replacementCount > 0 and lastNoticeAt == 0 then
+          print("[Desgraça Hub] Cabeçalho Quantum Onyx Project substituído.")
+          lastNoticeAt = os.clock()
+        end
+        task.wait(3)
       end
     end)
 
