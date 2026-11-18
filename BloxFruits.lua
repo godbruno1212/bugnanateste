@@ -7827,9 +7827,7 @@ My Boat (%s)%s
       Key = true,
       Theme = "Purple",
       Credits = {
-        { Name = "Vin ", Role = "ServerOwner" }, { Name = "Flazhy ", Role = "MainDeveloper" },
-        { Name = "Kiel ", Role = "WebDesigner" }, { Name = "CudalPH ", Role = "Tester" },
-        { Name = "Pierce ", Role = "Support" },
+        { Name = "santos mzl", Role = "Owner e Dev" },
       },
       SaveFile = "BloxFruits",
     })
