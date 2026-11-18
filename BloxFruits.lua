@@ -129,7 +129,84 @@ else
     return v18(p1)
   end
 
-  spawn = task.spawn
+  -- Desgraça Hub runtime lifecycle: own threads, stop managers, allow reload.
+  local rawDesgracaSpawn = task.spawn
+  local desgracaRuntime = {
+    Running = true,
+    Threads = setmetatable({}, { __mode = "k" }),
+    Connections = {},
+    Window = nil,
+  }
+  spawn = function(callback, ...)
+    if not desgracaRuntime.Running then return nil end
+    local args = table.pack(...)
+    local thread = rawDesgracaSpawn(function()
+      if desgracaRuntime.Running then
+        callback(table.unpack(args, 1, args.n))
+      end
+    end)
+    desgracaRuntime.Threads[thread] = true
+    return thread
+  end
+  local function TrackDesgracaConnection(connection)
+    if connection then
+      table.insert(desgracaRuntime.Connections, connection)
+    end
+    return connection
+  end
+  local function KillDesgracaHub()
+    if not desgracaRuntime.Running then return end
+    desgracaRuntime.Running = false
+    -- Stop all enabled features, including those that don't use the standard scheduler.
+    if type(v19) == "table" then
+      for key, value in pairs(v19) do
+        if type(value) == "boolean" then v19[key] = false end
+      end
+    end
+    if v33 then
+      if type(v33.Functions) == "table" then
+        for _, entry in pairs(v33.Functions) do
+          if type(entry) == "table" then
+            entry._StopFlag = true
+            entry.Running = false
+          end
+        end
+      end
+      if type(v33.Loops) == "table" then
+        for _, entry in pairs(v33.Loops) do
+          if type(entry) == "table" then
+            entry.Active = false
+            entry.Running = false
+          end
+        end
+      end
+      v33.ActiveFunction = nil
+    end
+    if tweenManager then
+      pcall(function() tweenManager:StopTween() end)
+      pcall(function() tweenManager:StopBoatTween() end)
+    end
+    for _, connection in ipairs(desgracaRuntime.Connections) do
+      pcall(function() connection:Disconnect() end)
+    end
+    for thread in pairs(desgracaRuntime.Threads) do
+      if thread ~= coroutine.running() then
+        pcall(task.cancel, thread)
+      end
+    end
+    getgenv().QuantumOnyxActive = false
+    getgenv().__DesgracaHubKill = nil
+    local window = desgracaRuntime.Window
+    if window then
+      pcall(function()
+        if type(window.Destroy) == "function" then window:Destroy()
+        elseif type(window.Unload) == "function" then window:Unload()
+        elseif type(window.Close) == "function" then window:Close() end
+      end)
+    end
+    print("[Desgraça Hub] Script encerrado. Pode executar o loader novamente sem relogar.")
+  end
+  getgenv().__DesgracaHubKill = KillDesgracaHub
   v19 = {}
   v20 = {}
   v21 = {}
@@ -143,7 +220,7 @@ else
   fragments = data:WaitForChild("Fragments")
   beli = data:WaitForChild("Beli")
 
-  localPlayer.CharacterAdded:Connect(function(character2)
+  TrackDesgracaConnection(localPlayer.CharacterAdded:Connect(function(character2)
     if not character2 then
       return
     else
@@ -153,7 +230,7 @@ else
       waitForChild2 = character2:WaitForChild("HumanoidRootPart", 10)
       return
     end
-  end)
+  end))
 
   enemies = v4:WaitForChild("Enemies")
   seaBeasts = v4:WaitForChild("SeaBeasts")
@@ -840,7 +917,7 @@ else
       end
     end
 
-    localPlayer.CharacterAdded:Connect(f24)
+    TrackDesgracaConnection(localPlayer.CharacterAdded:Connect(f24))
 
     if localPlayer.Character then
       f24(localPlayer.Character)
@@ -1683,7 +1760,7 @@ else
         f26()
 
         spawn(function()
-          local connect = v7.PreSimulation:Connect(f26)
+          local connect = TrackDesgracaConnection(v7.PreSimulation:Connect(f26))
           v142 = connect
           f34(v144, p44, function() return v145 == count2 end)
           pcall(function() connect:Disconnect() end)
@@ -3644,7 +3721,7 @@ Restock: %s
       end
     end
 
-    v6:GetInstanceAddedSignal("QuantumBringTag"):Connect(function(p78)
+    TrackDesgracaConnection(v6:GetInstanceAddedSignal("QuantumBringTag"):Connect(function(p78)
       spawn(function()
         local humanoidRootPart22 = p78:FindFirstChild("HumanoidRootPart") or p78.PrimaryPart
         local v291 = not humanoidRootPart22
@@ -3754,7 +3831,7 @@ Restock: %s
           return
         end
       end)
-    end)
+    end))
 
     function v250:MobsNextSpawn(p79)
       if v250.NextSpawnCooldown[p79] then
@@ -5623,7 +5700,7 @@ Restock: %s
   end
 
   local function f60(p132)
-    p132.CharacterAdded:Connect(function(character18)
+    TrackDesgracaConnection(p132.CharacterAdded:Connect(function(character18)
       task.wait(0.4)
 
       if p132 == localPlayer then
@@ -5661,14 +5738,14 @@ Restock: %s
       elseif v19.ESPPlayer then
         pcall(PlayerESP)
       end
-    end)
+    end))
   end
 
   for index31, value66 in ipairs(v3:GetPlayers()) do
     f60(value66)
   end
 
-  v3.PlayerAdded:Connect(f60)
+  TrackDesgracaConnection(v3.PlayerAdded:Connect(f60))
 
   function IslandESP()
     if not v19.ESPIsland then
@@ -6520,18 +6597,18 @@ My Boat (%s)%s
         return
       end
 
-      p145:GetAttributeChangedSignal("IsDisabled"):Connect(function()
+      TrackDesgracaConnection(p145:GetAttributeChangedSignal("IsDisabled"):Connect(function()
         if not p145:GetAttribute("IsDisabled") then
           v459[p145] = nil
         end
-      end)
+      end))
     end
 
     for index50, value88 in ipairs(v6:GetTagged("_ChestTagged")) do
       f65(value88)
     end
 
-    v6:GetInstanceAddedSignal("_ChestTagged"):Connect(f65)
+    TrackDesgracaConnection(v6:GetInstanceAddedSignal("_ChestTagged"):Connect(f65))
 
     local function f66(p146)
       if not p146 then
@@ -7756,6 +7833,7 @@ My Boat (%s)%s
       },
       SaveFile = "BloxFruits",
     })
+    desgracaRuntime.Window = window
 
     local v518 = {
       Home = window:AddTab("Home", "home-quantum"),
@@ -8383,7 +8461,7 @@ My Boat (%s)%s
       end
 
       if p203 then
-        connect2 = v7.RenderStepped:Connect(function()
+        connect2 = TrackDesgracaConnection(v7.RenderStepped:Connect(function()
           if not v19.CamLock then
             if connect2 then
               connect2:Disconnect()
@@ -8413,7 +8491,7 @@ My Boat (%s)%s
               end
             end
           end)
-        end)
+        end))
       end
     end
 
@@ -9346,9 +9424,9 @@ Position: %.2f Studs Away]], count8, huge13) or "No fruits detected nearby."
 
       if v19.WalkSpeed and localPlayer.Character
         and localPlayer.Character:FindFirstChild("Humanoid") then
-        localPlayer.Character.Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
+        TrackDesgracaConnection(localPlayer.Character.Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
           localPlayer.Character.Humanoid.WalkSpeed = v19.WalkSpeed
-        end)
+        end))
 
         localPlayer.Character.Humanoid.WalkSpeed = v19.WalkSpeed
       end
@@ -9955,6 +10033,9 @@ Position: %.2f Studs Away]], count8, huge13) or "No fruits detected nearby."
       callback = v544.ToggleAntiAFK,
     })
 
+    farmSettings:addButton("Matar Script (sem relogar)", function()
+      KillDesgracaHub()
+    end)
     if v544.RemoveEffects then
       farmSettings:addButton("Remove Effects", v544.RemoveEffects)
     end
@@ -11413,7 +11494,7 @@ Position: %.2f Studs Away]], count8, huge13) or "No fruits detected nearby."
       v671.Thread = spawn(function()
         local v672 = p228 and p228 > 0 and p228 or 0.03
 
-        while v671.Active do
+        while v671.Active and desgracaRuntime.Running do
           if v671.NoCheck or v19 and v19[p227] then
             v671.Running = true
             pcall(p229)
@@ -11576,7 +11657,7 @@ Position: %.2f Studs Away]], count8, huge13) or "No fruits detected nearby."
       if not v674 then
         v674 = true
 
-        commE.OnClientEvent:Connect(function(p233, p234, p235)
+        TrackDesgracaConnection(commE.OnClientEvent:Connect(function(p233, p234, p235)
           if p233 == "ItemChanged" and p235 == "stored" and p234 and p234.Name then
             if v19.SendWebhookStoreFruit then
               local v682 = {}
@@ -11596,9 +11677,9 @@ Position: %.2f Studs Away]], count8, huge13) or "No fruits detected nearby."
               }))
             end
           end
-        end)
+        end))
 
-        replicatedStorage.Modules.Net["RE/SpinGacha"].OnClientEvent:Connect(function(p236)
+        TrackDesgracaConnection(replicatedStorage.Modules.Net["RE/SpinGacha"].OnClientEvent:Connect(function(p236)
           if p236 and p236.Winners and p236.Winners[1] then
             if v19.SendWebhookRolledFruit then
               local v683 = p236.Winners[1]
@@ -11610,7 +11691,7 @@ Position: %.2f Studs Away]], count8, huge13) or "No fruits detected nearby."
               end
             end
           end
-        end)
+        end))
       end
     end)
 
@@ -12239,10 +12320,10 @@ Position: %.2f Studs Away]], count8, huge13) or "No fruits detected nearby."
           table.insert(functionList, { Name = p238, Func = p239 })
         end
 
-        v706[p238] = task.spawn(function()
+        v706[p238] = spawn(function()
           local v711 = functions[p238]
 
-          while v711 and not v711._StopFlag do
+          while v711 and not v711._StopFlag and desgracaRuntime.Running do
             if v19 and v19[p238] then
               if v711.NoLock then
                 v711.Running = true
@@ -13035,7 +13116,7 @@ Position: %.2f Studs Away]], count8, huge13) or "No fruits detected nearby."
       local bonusMomentsRemoteEvent = v5.Remotes:FindFirstChild("BonusMomentsRemoteEvent")
 
       if bonusMomentsRemoteEvent then
-        bonusMomentsRemoteEvent.OnClientEvent:Connect(function(p242, p243, ...)
+        TrackDesgracaConnection(bonusMomentsRemoteEvent.OnClientEvent:Connect(function(p242, p243, ...)
           if p242 == "Prickly Harvest" then
             local v735 = ...
 
@@ -13047,7 +13128,7 @@ Position: %.2f Studs Away]], count8, huge13) or "No fruits detected nearby."
               v734 = 0
             end
           end
-        end)
+        end))
       end
     end)
 
@@ -17230,7 +17311,7 @@ Position: %.2f Studs Away]], count8, huge13) or "No fruits detected nearby."
             end
 
             v903 = false
-            local connect3 = v890.OnComplete:Connect(function() v903 = true end)
+            local connect3 = TrackDesgracaConnection(v890.OnComplete:Connect(function() v903 = true end))
             local v905 = tick() + (p253 or 20)
 
             while not v903 and tick() < v905 do
