@@ -7744,7 +7744,7 @@ My Boat (%s)%s
 
   function v33.LoadLibrary()
     local window = devNiulaiLua:CreateWindow({
-      Title = "Quantum Onyx Project",
+      Title = "Desgraça Hub",
       Subtitle = "Blox Fruit",
       Version = "v.Freemium",
       Key = true,
@@ -17662,7 +17662,7 @@ Position: %.2f Studs Away]], count8, huge13) or "No fruits detected nearby."
     )
 
     task.wait(1)
-    v33:SendNotify("Quantum (INFO)", "Quantum Onyx Script is 100% Free and Keyless", 8)
+    v33:SendNotify("Desgraça Hub", "Script de teste carregado", 8)
 
     pcall(function()
       loadstring(game:HttpGet("https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/Util/BloxFruitModule/Preload/Weebo.lua"))()
