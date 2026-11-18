@@ -6289,9 +6289,9 @@ CheckItemBPCRBPCR = v5
 v5 = loadstring
 local v15 = game
 str2 = v15
-local v16, v18, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v40, v42, v44, v46, v47, v48, v50, v52, v54, v56, v58, v61, v65, v70, v72, v74, v76, v78, v80, v82, v85, v88, v90, v94, v97, v99, v103, v106, v109, v113, v115, v117, v119, v123, v129, v132, v135, v138, v141, v144, v147, v150, v153, v156, v163, v167, v174, v178, v182, v186, v190, v194, v198, v202, v206, v210, v214, v218, v222, v226, v230, v234, v238, v242, v246, v250, v254, v258, v262, v266, v270, v274, v278, v282, v286, v290, v294, v298, v302, v306, v310, v314, v318, v322, v326, v330, v334, v338, v342, v346, v350, v354, v358, v362, v366, v370, v374
-v16 = v15.HttpGet(str2, "https://raw.githubusercontent.com/farehamhz/RedzLib/main/RedzLib")
-v5 = v5(v16)
+local __dv = {}
+__dv.v16 = v15.HttpGet(str2, "https://raw.githubusercontent.com/farehamhz/RedzLib/main/RedzLib")
+v5 = v5(__dv.v16)
 v5 = v5()
 local v17 = v5
 v5 = v5.MakeWindow
@@ -6380,19 +6380,20 @@ str2.MouseButton1Click:Connect(function()
         v5:Minimize(true)
     end
 end)
-local tab = v5:MakeTab({"Farming", "home"})
-local tab2 = v5:MakeTab({"Auto Fishing", "rbxassetid://"})
-local tab3 = v5:MakeTab({"Quest | Items", "swords"})
-local tab4 = v5:MakeTab({"Volcano Dojo", "cake"})
-local tab5 = v5:MakeTab({"Sea Event", "waves"})
-local tab6 = v5:MakeTab({"Race V4", "crown"})
-local tab7 = v5:MakeTab({"Raid Fruits", "cherry"})
-local tab8 = v5:MakeTab({"Fruits | Check Stock", "apple"})
-local tab9 = v5:MakeTab({"Teleport", "locate"})
-local tab10 = v5:MakeTab({"PvP,Player", "user"})
-local tab11 = v5:MakeTab({"Shop", "shoppingCart"})
-local tab12 = v5:MakeTab({"Settings", "settings"})
-local section = tab:AddSection({"Select Melee,Sword,Gun,Fruit"})
+local __UI = {}
+__UI.tab = v5:MakeTab({"Farming", "home"})
+__UI.tab2 = v5:MakeTab({"Auto Fishing", "rbxassetid://"})
+__UI.tab3 = v5:MakeTab({"Quest | Items", "swords"})
+__UI.tab4 = v5:MakeTab({"Volcano Dojo", "cake"})
+__UI.tab5 = v5:MakeTab({"Sea Event", "waves"})
+__UI.tab6 = v5:MakeTab({"Race V4", "crown"})
+__UI.tab7 = v5:MakeTab({"Raid Fruits", "cherry"})
+__UI.tab8 = v5:MakeTab({"Fruits | Check Stock", "apple"})
+__UI.tab9 = v5:MakeTab({"Teleport", "locate"})
+__UI.tab10 = v5:MakeTab({"PvP,Player", "user"})
+__UI.tab11 = v5:MakeTab({"Shop", "shoppingCart"})
+__UI.tab12 = v5:MakeTab({"Settings", "settings"})
+__UI.section = __UI.tab:AddSection({"Select Melee,Sword,Gun,Fruit"})
 _G.SelectWeapon = "Melee"
 task.spawn(function()
     while true do
@@ -6450,9 +6451,9 @@ tbl4.Flag = "WeaponType"
 tbl4.Callback = function(value)
     _G.SelectWeapon = value
 end
-local dropdown = tab:AddDropdown(tbl4)
-local section2 = tab:AddSection({"Main Farm"})
-tab:AddToggle({
+local dropdown = __UI.tab:AddDropdown(tbl4)
+__UI.section2 = __UI.tab:AddSection({"Main Farm"})
+__UI.tab:AddToggle({
     Name = "Auto Farm Level",
     Description = "Only Level 1 -> Level 2650",
     Default = false,
@@ -6598,7 +6599,7 @@ spawn(function()
         end
     end
 end)
-tab:AddToggle({
+__UI.tab:AddToggle({
     Title = "Farm Level New",
     Description = "Only Submerged Island",
     Value = false,
@@ -6707,7 +6708,7 @@ spawn(function()
         end
     end
 end)
-tab:AddToggle({
+__UI.tab:AddToggle({
     Name = "Auto Kill Near | Mob Aura",
     Description = "ï¿½Ã¡nh QuÃ¡i Gáº§n",
     Default = false,
@@ -6763,7 +6764,7 @@ spawn(function()
         end
     end
 end)
-local section3 = tab:AddSection({"Boss"})
+__UI.section3 = __UI.tab:AddSection({"Boss"})
 local tbl5 = {}
 if World1 then
     str3 = "Bobby"
@@ -6839,7 +6840,7 @@ function str4(value)
     _G.SelectBoss = value
 end
 str3.Callback = str4
-tab:AddDropdown(str3)
+__UI.tab:AddDropdown(str3)
 str3 = {}
 str3.Name = "Auto Farm Boss"
 str3.Description = "Farm Boss ÄÃ£ Chá»n"
@@ -6849,7 +6850,7 @@ function str4(value)
     StopTween(_G.BossPain)
 end
 str3.Callback = str4
-tab:AddToggle(str3)
+__UI.tab:AddToggle(str3)
 task.spawn(function()
     while true do
         if not task.wait() then
@@ -6900,9 +6901,9 @@ end)
 str3 = {}
 str4 = "AutoRaidPirate"
 str3[1] = str4
-local section4 = tab:AddSection(str3)
-str3 = tab
-local addToggle = tab.AddToggle
+__UI.section4 = __UI.tab:AddSection(str3)
+str3 = __UI.tab
+__UI.addToggle = __UI.tab.AddToggle
 str4 = {}
 str4.Name = "Farm Pirate"
 str4.Description = "ï¿½Ã¡nh Háº£i Táº·c TrÃªn PhÃ¡o ÄÃ i Biá»n"
@@ -6911,7 +6912,7 @@ str4.Callback = function(value)
     _G.AutoRaidPirate = value
     StopTween(_G.AutoRaidPirate)
 end
-addToggle(str3, str4)
+__UI.addToggle(str3, str4)
 function str3()
     while true do
         if not wait() then
@@ -6964,13 +6965,13 @@ function str3()
     end
 end
 spawn(str3)
-str3 = tab
-local addSection = tab.AddSection
+str3 = __UI.tab
+local addSection = __UI.tab.AddSection
 str4 = {}
 str4[1] = "TyrantoftheSkies"
 local v39 = addSection(str3, str4)
-str4 = tab
-str3 = tab.AddParagraph
+str4 = __UI.tab
+str3 = __UI.tab.AddParagraph
 str3 = str3(str4, {Title = "Check Eyes Status", Content = "Loading..."})
 str4 = task
 str4 = str4.spawn
@@ -6999,7 +7000,7 @@ str4(function()
         end)
     end
 end)
-str4 = tab.AddToggle
+str4 = __UI.tab.AddToggle
 str5 = {}
 str5.Name = "Auto Farm Tyrant"
 str5.Description = "Farm QuÃ¡i VÃ  ÄÃ¡nh Boss Chim"
@@ -7008,7 +7009,7 @@ str5.Callback = function(value)
     _G.FarmDaiBan = value
     StopTween(_G.FarmDaiBan)
 end
-str4(tab, str5)
+str4(__UI.tab, str5)
 str4 = CFrame
 str4 = str4.new
 str5 = 155.21844482421875
@@ -7158,7 +7159,7 @@ str5(function()
         end
     end
 end)
-str5 = tab.AddToggle
+str5 = __UI.tab.AddToggle
 str6 = {}
 str6.Name = "Summon Tyrant Of The Skies"
 str6.Description = "Tá»± Äá»ng PhÃ¡ BÃ¬nh Äá» Triá»u Há»i Boss"
@@ -7167,7 +7168,7 @@ str6.Callback = function(value)
     _G.Farm8Binhs = value
     StopTween(_G.Farm8Binhs)
 end
-str5(tab, str6)
+str5(__UI.tab, str6)
 str5 = {}
 str6 = -16250.2354
 str7 = 1313.01904
@@ -7213,8 +7214,8 @@ player2 = 0
 num8 = 0
 num9 = -0.0349550731
 num10 = 0
-local v49, v51, v53, v55, v57, v59, v62, v66, v71, v73, v75, v77, v79, v81, v83, v86, v89, v91, v95, v98, v100, v104, v107, v110, v114, v116, v118, v120, v124, v130, v133, v136, v139, v142, v145, v148, v151, v154, v157, v164, v168, v175, v179, v183, v187, v191, v195, v199, v203, v207, v211, v215, v219, v223, v227, v231, v235, v239, v243, v247, v251, v255, v259, v263, v267, v271, v275, v279, v283, v287, v291, v295, v299, v303, v307, v311, v315, v319, v323, v327, v331, v335, v339, v343, v347, v351, v355, v359, v363, v367, v371, v375
-v49, str8, v51, v53, v55, v57, v59, player2, v62, num8, num9, num10, v66, str9, str10, str11, str12, str13, str14, str15, v71, str16, str17, str18, v7, tbl, str19, v73, v75, v77, v79, str20, v81, v83, str21, str22, v86, v89, v91, v95, str23, str24, str25, v98, v100, v104, str26, str27, str28, str29, v107, str30, v110, str31, v114, v116, v118, v120, v124, str32, str33, v130, v133, v136, v139, v142, v145, v148, v151, v154, v157, str34, str35, str36, flag, flag2, flag3, flag4, num11, v164, v168, v175, str37, v179, v183, v187, v191, v195, v199, v203, v207, v211, v215, v219, v223, v227, v231, v235, v239, v243, v247, v251, v255, v259, v263, v267, v271, v275, v279, v283, v287, v291, v295, v299, v303, v307, v311, v315, v319, v323, v327, v331, v335, v339, v343, v347, v351, v355, v359, v363, v367, v371, v375 = CFrame.new(str8, 158.167007, 1466.34399, 0.999388874, 0, 0.0349550731, player2, 1, num8, num9, num10, 0.999388874)
+local __dv2 = {}
+__dv2.v49 = CFrame.new(str8, 158.167007, 1466.34399, 0.999388874, 0, 0.0349550731, player2, 1, num8, num9, num10, 0.999388874); str8, __dv2.v51, __dv2.v53, __dv2.v55, __dv2.v57, __dv2.v59, player2, __dv2.v62, num8, num9, num10, __dv2.v66 = nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil; str9, str10, str11, str12, str13, str14, str15, __dv2.v71, str16, str17, str18, v7 = nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil; tbl, str19, __dv2.v73, __dv2.v75, __dv2.v77, __dv2.v79, str20, __dv2.v81, __dv2.v83, str21, str22, __dv2.v86 = nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil; __dv2.v89, __dv2.v91, __dv2.v95, str23, str24, str25, __dv2.v98, __dv2.v100, __dv2.v104, str26, str27, str28 = nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil; str29, __dv2.v107, str30, __dv2.v110, str31, __dv2.v114, __dv2.v116, __dv2.v118, __dv2.v120, __dv2.v124, str32, str33 = nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil; __dv2.v130, __dv2.v133, __dv2.v136, __dv2.v139, __dv2.v142, __dv2.v145, __dv2.v148, __dv2.v151, __dv2.v154, __dv2.v157, str34, str35 = nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil; str36, flag, flag2, flag3, flag4, num11, __dv2.v164, __dv2.v168, __dv2.v175, str37, __dv2.v179, __dv2.v183 = nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil; __dv2.v187, __dv2.v191, __dv2.v195, __dv2.v199, __dv2.v203, __dv2.v207, __dv2.v211, __dv2.v215, __dv2.v219, __dv2.v223, __dv2.v227, __dv2.v231 = nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil; __dv2.v235, __dv2.v239, __dv2.v243, __dv2.v247, __dv2.v251, __dv2.v255, __dv2.v259, __dv2.v263, __dv2.v267, __dv2.v271, __dv2.v275, __dv2.v279 = nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil; __dv2.v283, __dv2.v287, __dv2.v291, __dv2.v295, __dv2.v299, __dv2.v303, __dv2.v307, __dv2.v311, __dv2.v315, __dv2.v319, __dv2.v323, __dv2.v327 = nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil; __dv2.v331, __dv2.v335, __dv2.v339, __dv2.v343, __dv2.v347, __dv2.v351, __dv2.v355, __dv2.v359, __dv2.v363, __dv2.v367, __dv2.v371, __dv2.v375 = nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil
 str5[1] = cFrame
 str5[2] = str6
 str5[3] = cFrame2
@@ -7222,19 +7223,19 @@ str5[4] = str7
 str5[5] = cframe
 str5[6] = cFrame3
 str5[7] = cFrame4
-str5[8] = v49
+str5[8] = __dv2.v49
 str5[9] = str8
-str5[10] = v51
-str5[11] = v53
-str5[12] = v55
-str5[13] = v57
-str5[14] = v59
+str5[10] = __dv2.v51
+str5[11] = __dv2.v53
+str5[12] = __dv2.v55
+str5[13] = __dv2.v57
+str5[14] = __dv2.v59
 str5[15] = player2
-str5[16] = v62
+str5[16] = __dv2.v62
 str5[17] = num8
 str5[18] = num9
 str5[19] = num10
-str5[20] = v66
+str5[20] = __dv2.v66
 str5[21] = str9
 str5[22] = str10
 str5[23] = str11
@@ -7242,57 +7243,57 @@ str5[24] = str12
 str5[25] = str13
 str5[26] = str14
 str5[27] = str15
-str5[28] = v71
+str5[28] = __dv2.v71
 str5[29] = str16
 str5[30] = str17
 str5[31] = str18
 str5[32] = v7
 str5[33] = tbl
 str5[34] = str19
-str5[35] = v73
-str5[36] = v75
-str5[37] = v77
-str5[38] = v79
+str5[35] = __dv2.v73
+str5[36] = __dv2.v75
+str5[37] = __dv2.v77
+str5[38] = __dv2.v79
 str5[39] = str20
-str5[40] = v81
-str5[41] = v83
+str5[40] = __dv2.v81
+str5[41] = __dv2.v83
 str5[42] = str21
 str5[43] = str22
-str5[44] = v86
-str5[45] = v89
-str5[46] = v91
-str5[47] = v95
+str5[44] = __dv2.v86
+str5[45] = __dv2.v89
+str5[46] = __dv2.v91
+str5[47] = __dv2.v95
 str5[48] = str23
 str5[49] = str24
 str5[50] = str25
-str5[51] = v98
-str5[52] = v100
-str5[53] = v104
+str5[51] = __dv2.v98
+str5[52] = __dv2.v100
+str5[53] = __dv2.v104
 str5[54] = str26
 str5[55] = str27
 str5[56] = str28
 str5[57] = str29
-str5[58] = v107
+str5[58] = __dv2.v107
 str5[59] = str30
-str5[60] = v110
+str5[60] = __dv2.v110
 str5[61] = str31
-str5[62] = v114
-str5[63] = v116
-str5[64] = v118
-str5[65] = v120
-str5[66] = v124
+str5[62] = __dv2.v114
+str5[63] = __dv2.v116
+str5[64] = __dv2.v118
+str5[65] = __dv2.v120
+str5[66] = __dv2.v124
 str5[67] = str32
 str5[68] = str33
-str5[69] = v130
-str5[70] = v133
-str5[71] = v136
-str5[72] = v139
-str5[73] = v142
-str5[74] = v145
-str5[75] = v148
-str5[76] = v151
-str5[77] = v154
-str5[78] = v157
+str5[69] = __dv2.v130
+str5[70] = __dv2.v133
+str5[71] = __dv2.v136
+str5[72] = __dv2.v139
+str5[73] = __dv2.v142
+str5[74] = __dv2.v145
+str5[75] = __dv2.v148
+str5[76] = __dv2.v151
+str5[77] = __dv2.v154
+str5[78] = __dv2.v157
 str5[79] = str34
 str5[80] = str35
 str5[81] = str36
@@ -7301,60 +7302,60 @@ str5[83] = flag2
 str5[84] = flag3
 str5[85] = flag4
 str5[86] = num11
-str5[87] = v164
-str5[88] = v168
-str5[89] = v175
+str5[87] = __dv2.v164
+str5[88] = __dv2.v168
+str5[89] = __dv2.v175
 str5[90] = str37
-str5[91] = v179
-str5[92] = v183
-str5[93] = v187
-str5[94] = v191
-str5[95] = v195
-str5[96] = v199
-str5[97] = v203
-str5[98] = v207
-str5[99] = v211
-str5[100] = v215
-str5[101] = v219
-str5[102] = v223
-str5[103] = v227
-str5[104] = v231
-str5[105] = v235
-str5[106] = v239
-str5[107] = v243
-str5[108] = v247
-str5[109] = v251
-str5[110] = v255
-str5[111] = v259
-str5[112] = v263
-str5[113] = v267
-str5[114] = v271
-str5[115] = v275
-str5[116] = v279
-str5[117] = v283
-str5[118] = v287
-str5[119] = v291
-str5[120] = v295
-str5[121] = v299
-str5[122] = v303
-str5[123] = v307
-str5[124] = v311
-str5[125] = v315
-str5[126] = v319
-str5[127] = v323
-str5[128] = v327
-str5[129] = v331
-str5[130] = v335
-str5[131] = v339
-str5[132] = v343
-str5[133] = v347
-str5[134] = v351
-str5[135] = v355
-str5[136] = v359
-str5[137] = v363
-str5[138] = v367
-str5[139] = v371
-str5[140] = v375
+str5[91] = __dv2.v179
+str5[92] = __dv2.v183
+str5[93] = __dv2.v187
+str5[94] = __dv2.v191
+str5[95] = __dv2.v195
+str5[96] = __dv2.v199
+str5[97] = __dv2.v203
+str5[98] = __dv2.v207
+str5[99] = __dv2.v211
+str5[100] = __dv2.v215
+str5[101] = __dv2.v219
+str5[102] = __dv2.v223
+str5[103] = __dv2.v227
+str5[104] = __dv2.v231
+str5[105] = __dv2.v235
+str5[106] = __dv2.v239
+str5[107] = __dv2.v243
+str5[108] = __dv2.v247
+str5[109] = __dv2.v251
+str5[110] = __dv2.v255
+str5[111] = __dv2.v259
+str5[112] = __dv2.v263
+str5[113] = __dv2.v267
+str5[114] = __dv2.v271
+str5[115] = __dv2.v275
+str5[116] = __dv2.v279
+str5[117] = __dv2.v283
+str5[118] = __dv2.v287
+str5[119] = __dv2.v291
+str5[120] = __dv2.v295
+str5[121] = __dv2.v299
+str5[122] = __dv2.v303
+str5[123] = __dv2.v307
+str5[124] = __dv2.v311
+str5[125] = __dv2.v315
+str5[126] = __dv2.v319
+str5[127] = __dv2.v323
+str5[128] = __dv2.v327
+str5[129] = __dv2.v331
+str5[130] = __dv2.v335
+str5[131] = __dv2.v339
+str5[132] = __dv2.v343
+str5[133] = __dv2.v347
+str5[134] = __dv2.v351
+str5[135] = __dv2.v355
+str5[136] = __dv2.v359
+str5[137] = __dv2.v363
+str5[138] = __dv2.v367
+str5[139] = __dv2.v371
+str5[140] = __dv2.v375
 function TweenToPosition(cframe2)
     local character = game.Players.LocalPlayer.Character
     local cframe3 = character or v
@@ -7459,16 +7460,16 @@ function str6()
     end
 end
 task.spawn(str6)
-str6 = tab
-local addSection2 = tab.AddSection
+str6 = __UI.tab
+local addSection2 = __UI.tab.AddSection
 str7 = "XÆ°Æ¡ng"
 local v43 = addSection2(str6, {str7})
-str6 = tab.AddParagraph
+str6 = __UI.tab.AddParagraph
 str7 = {}
 cframe = "Check Bone"
 str7.Title = cframe
 str7.Content = "Loading..."
-str6 = str6(tab, str7)
+str6 = str6(__UI.tab, str7)
 function str7()
     while true do
         if not task.wait(1) then
@@ -7481,8 +7482,8 @@ function str7()
     end
 end
 task.spawn(str7)
-str7 = tab
-local addToggle2 = tab.AddToggle
+str7 = __UI.tab
+__UI.addToggle2 = __UI.tab.AddToggle
 cframe = {}
 cframe.Name = "Fram Bone"
 cframe.Description = "Fram SÆ°Æ¡ng"
@@ -7491,7 +7492,7 @@ cframe.Callback = function(value)
     _G.FarmBone = value
     StopTween(_G.FarmBone)
 end
-addToggle2(str7, cframe)
+__UI.addToggle2(str7, cframe)
 function str7()
     local cframe2
     while true do
@@ -7584,8 +7585,8 @@ function str7()
     end
 end
 spawn(str7)
-str7 = tab
-local addToggle3 = tab.AddToggle
+str7 = __UI.tab
+__UI.addToggle3 = __UI.tab.AddToggle
 cframe = {}
 cframe.Name = "Seperator Hallow Scythe"
 cframe.Description = "Triá»u há»i vÃ  tiÃªu diá»t Soul Reaper"
@@ -7594,7 +7595,7 @@ cframe.Callback = function(value)
     _G.Hallow = value
     StopTween(_G.Hallow)
 end
-addToggle3(str7, cframe)
+__UI.addToggle3(str7, cframe)
 function str7()
     while true do
         if not wait() then
@@ -7651,8 +7652,8 @@ function str7()
     end
 end
 spawn(str7)
-str7 = tab
-local addToggle4 = tab.AddToggle
+str7 = __UI.tab
+__UI.addToggle4 = __UI.tab.AddToggle
 cframe = {}
 cframe.Name = "Trade Bone"
 cframe.Description = "Tá»± Äá»ng Äá»i xÆ°Æ¡ng láº¥y pháº§n thÆ°á»ng"
@@ -7661,7 +7662,7 @@ cframe.Callback = function(value)
     _G.Rdbone = value
     StopTween(_G.Rdbone)
 end
-addToggle4(str7, cframe)
+__UI.addToggle4(str7, cframe)
 function str7()
     while true do
         if not wait(0.1) then
@@ -7673,8 +7674,8 @@ function str7()
     end
 end
 spawn(str7)
-str7 = tab
-local addToggle5 = tab.AddToggle
+str7 = __UI.tab
+__UI.addToggle5 = __UI.tab.AddToggle
 cframe = {}
 cframe.Name = "Auto Pray"
 cframe.Description = ""
@@ -7683,7 +7684,7 @@ cframe.Callback = function(value)
     _G.Pray = value
     StopTween(_G.Pray)
 end
-addToggle5(str7, cframe)
+__UI.addToggle5(str7, cframe)
 function str7()
     pcall(function()
         while true do
@@ -7699,8 +7700,8 @@ function str7()
     end)
 end
 spawn(str7)
-str7 = tab
-local addToggle6 = tab.AddToggle
+str7 = __UI.tab
+__UI.addToggle6 = __UI.tab.AddToggle
 cframe = {}
 cframe.Name = "Auto Try Luck"
 cframe.Description = ""
@@ -7709,7 +7710,7 @@ cframe.Callback = function(value)
     _G.Trylux = value
     StopTween(_G.Trylux)
 end
-addToggle6(str7, cframe)
+__UI.addToggle6(str7, cframe)
 function str7()
     pcall(function()
         while true do
@@ -7725,13 +7726,13 @@ function str7()
     end)
 end
 spawn(str7)
-str7 = tab
-local addSection3 = tab.AddSection
+str7 = __UI.tab
+local addSection3 = __UI.tab.AddSection
 cframe = {}
 cframe[1] = "Katakuri"
 local v45 = addSection3(str7, cframe)
-cframe = tab
-str7 = tab.AddParagraph
+cframe = __UI.tab
+str7 = __UI.tab.AddParagraph
 str7 = str7(cframe, {Title = "Check Cake Prince", Content = "Loading..."})
 cframe = task
 cframe = cframe.spawn
@@ -7757,8 +7758,8 @@ cframe(function()
         end)
     end
 end)
-cframe = tab.AddToggle
-cframe(tab, {
+cframe = __UI.tab.AddToggle
+cframe(__UI.tab, {
     Name = "Farm Katakuri",
     Description = "Fram QuÃ¡i VÃ  ÄÃ¡nh HoÃ ng Tá»­ Bá»t V1",
     Default = false,
@@ -7928,7 +7929,7 @@ str8.Callback = function(value)
     _G.Fullykatakuri = value
     StopTween(_G.Fullykatakuri)
 end
-tab:AddToggle(str8)
+__UI.tab:AddToggle(str8)
 spawn(function()
     while true do
         if not wait() then
@@ -8147,9 +8148,9 @@ spawn(function()
 end)
 str8 = {}
 str8[1] = "Auto Farm Chest And Berry"
-local section5 = tab:AddSection(str8)
-str8 = tab
-tab.AddToggle(str8, {
+__UI.section5 = __UI.tab:AddSection(str8)
+str8 = __UI.tab
+__UI.tab.AddToggle(str8, {
     Name = "Auto Collect Berry",
     Description = "Tá»± Äá»ng Nháº·t Berry",
     Default = false,
@@ -8206,8 +8207,8 @@ function str8()
     end
 end
 spawn(str8)
-str8 = tab
-tab.AddToggle(str8, {
+str8 = __UI.tab
+__UI.tab.AddToggle(str8, {
     Name = "Auto Farm Chest [ Tween ]",
     Description = "Tá»± Äá»ng Nháº·t rÆ°Æ¡ng báº±ng tween",
     Default = false,
@@ -8247,16 +8248,16 @@ function str8()
     end
 end
 spawn(str8)
-str8 = tab
-local section6 = tab.AddSection(str8, {"Boss Fram"})
-str8 = tab.AddButton
-str8(tab, {
+str8 = __UI.tab
+__UI.section6 = __UI.tab.AddSection(str8, {"Boss Fram"})
+str8 = __UI.tab.AddButton
+str8(__UI.tab, {
     Name = "Cáº­p Nháº­t Boss",
     Description = "LÃ m má»i danh sÃ¡ch boss",
     Callback = function() end,
 })
-str8 = tab.AddParagraph
-str8 = str8(tab, {Title = "Boss Spawn Status", Content = "Initializing..."})
+str8 = __UI.tab.AddParagraph
+str8 = str8(__UI.tab, {Title = "Boss Spawn Status", Content = "Initializing..."})
 task.spawn(function()
     while true do
         if not task.wait(1) then
@@ -8354,7 +8355,7 @@ else
         str9,
     }
 end
-tab:AddDropdown({
+__UI.tab:AddDropdown({
     Name = "Auto Select Boss",
     Description = "Chá»n Boss Cáº§n Farm",
     Options = tbl6,
@@ -8363,7 +8364,7 @@ tab:AddDropdown({
         _G.SelectBoss = value
     end,
 })
-tab:AddToggle({
+__UI.tab:AddToggle({
     Name = "Farm Boss",
     Description = "Farm Boss ÄÃ£ Chá»n",
     Default = false,
@@ -8419,7 +8420,7 @@ task.spawn(function()
         end
     end
 end)
-local section7 = tab:AddSection({"Material"})
+__UI.section7 = __UI.tab:AddSection({"Material"})
 local tbl7 = {}
 if not World1 then
     if World2 then
@@ -8491,7 +8492,7 @@ player2.Default = tbl7[1]
 player2.Callback = function(value)
     _G.SelectMaterial = value
 end
-tab:AddDropdown(player2)
+__UI.tab:AddDropdown(player2)
 player2 = {}
 player2.Name = "Start Farm"
 player2.Description = "Tá»± Äá»ng farm material ÄÃ£ chá»n"
@@ -8500,7 +8501,7 @@ player2.Callback = function(value)
     _G.AutoFarmMaterial = value
     StopTween(_G.AutoFarmMaterial)
 end
-tab:AddToggle(player2)
+__UI.tab:AddToggle(player2)
 task.spawn(function()
     while true do
         if not task.wait(0.2) then
@@ -8555,9 +8556,9 @@ task.spawn(function()
 end)
 player2 = {}
 player2[1] = "Auto Fishing |  Tá»± Äá»ng CÃ¢u CÃ¡"
-local section8 = tab2:AddSection(player2)
-player2 = tab2
-local addToggle7 = tab2.AddToggle
+__UI.section8 = __UI.tab2:AddSection(player2)
+player2 = __UI.tab2
+__UI.addToggle7 = __UI.tab2.AddToggle
 local tbl8 = {Title = "Auto Fishing"}
 num8 = "Tá»± Äá»ng CÃ¢u CÃ¡ XoÃ¡ Hiá»u á»¨ng Khi CÃ¢u"
 tbl8.Description = num8
@@ -8567,7 +8568,7 @@ function num8(value)
     _G.AutoFishing = value
 end
 tbl8.Callback = num8
-addToggle7(player2, tbl8)
+__UI.addToggle7(player2, tbl8)
 local v60 = workspace
 player2 = game
 player2 = player2.Players
@@ -8652,8 +8653,8 @@ function str9()
     end
 end
 task.spawn(str9)
-str9 = tab2
-local addDropdown = tab2.AddDropdown
+str9 = __UI.tab2
+local addDropdown = __UI.tab2.AddDropdown
 str10 = {}
 str11 = "Select Fishing Lure"
 str10.Name = str11
@@ -8682,8 +8683,8 @@ function str11(value)
 end
 str10.Callback = str11
 addDropdown(str9, str10)
-str9 = tab2
-local addDropdown2 = tab2.AddDropdown
+str9 = __UI.tab2
+local addDropdown2 = __UI.tab2.AddDropdown
 str10 = {}
 str11 = "Select Fishing Rod"
 str10.Name = str11
@@ -8708,14 +8709,14 @@ end
 str10.Callback = str11
 addDropdown2(str9, str10)
 if World1 then
-    str9 = tab3
-    local addSection4 = tab3.AddSection
+    str9 = __UI.tab3
+    local addSection4 = __UI.tab3.AddSection
     str10 = {}
     str11 = "Quest Sea 1"
     str10[1] = str11
     local v = addSection4(str9, str10)
-    str10 = tab3
-    str9 = tab3.AddToggle
+    str10 = __UI.tab3
+    str9 = __UI.tab3.AddToggle
     str11 = {}
     str12 = "AutoSecondSea"
     str11.Name = str12
@@ -8820,14 +8821,14 @@ if World1 then
         end
     end
     str9(str10)
-    str10 = tab3
-    str9 = tab3.AddSection
+    str10 = __UI.tab3
+    str9 = __UI.tab3.AddSection
     str11 = {}
     str12 = "Boss Greybeard"
     str11[1] = str12
     str9 = str9(str10, str11)
-    str11 = tab3
-    str10 = tab3.AddToggle
+    str11 = __UI.tab3
+    str10 = __UI.tab3.AddToggle
     str12 = {}
     str13 = "Kill Greybeard"
     str12.Name = str13
@@ -8895,14 +8896,14 @@ if World1 then
         end
     end
     str10(str11)
-    str11 = tab3
-    str10 = tab3.AddSection
+    str11 = __UI.tab3
+    str10 = __UI.tab3.AddSection
     str12 = {}
     str13 = "Quest Sword"
     str12[1] = str13
     str10 = str10(str11, str12)
-    str12 = tab3
-    str11 = tab3.AddToggle
+    str12 = __UI.tab3
+    str11 = __UI.tab3.AddToggle
     str13 = {}
     str14 = "Auto Get Saber"
     str13.Name = str14
@@ -9055,8 +9056,8 @@ if World1 then
         end
     end
     str11(str12)
-    str12 = tab3
-    str11 = tab3.AddToggle
+    str12 = __UI.tab3
+    str11 = __UI.tab3.AddToggle
     str13 = {}
     str14 = "Auto Get Sword Pole"
     str13.Name = str14
@@ -9116,8 +9117,8 @@ if World1 then
         end
     end
     str11(str12)
-    str12 = tab3
-    str11 = tab3.AddToggle
+    str12 = __UI.tab3
+    str11 = __UI.tab3.AddToggle
     str13 = {}
     str14 = "Auto Get Sword Saw"
     str13.Name = str14
@@ -9196,8 +9197,8 @@ if World1 then
         end
     end
     str13(str14)
-    str14 = tab3
-    str13 = tab3.AddToggle
+    str14 = __UI.tab3
+    str13 = __UI.tab3.AddToggle
     str15 = {}
     str15.Name = "Auto Get Sword Wardens"
     str15.Description = "Tá»± Äá»ng Láº¥y Kiáº¿m Wardens"
@@ -9253,8 +9254,8 @@ if World1 then
         end
     end
     str13(str14)
-    str14 = tab3
-    str13 = tab3.AddToggle
+    str14 = __UI.tab3
+    str13 = __UI.tab3.AddToggle
     str15 = {}
     str15.Name = "Auto Get Sword Trident"
     str15.Description = "Tá»± Äá»ng Láº¥y Kiáº¿m Trident"
@@ -9312,14 +9313,14 @@ if World1 then
     str13(str14)
 end
 if World2 then
-    str9 = tab3
-    local addSection4 = tab3.AddSection
+    str9 = __UI.tab3
+    local addSection4 = __UI.tab3.AddSection
     str10 = {}
     str11 = "Quest Sea 2"
     str10[1] = str11
     local v2 = addSection4(str9, str10)
-    str10 = tab3
-    str9 = tab3.AddToggle
+    str10 = __UI.tab3
+    str9 = __UI.tab3.AddToggle
     str11 = {}
     str12 = "Auto Quest Sea Bartilo"
     str11.Name = str12
@@ -9661,8 +9662,8 @@ if World2 then
         end)
     end
     str9(str10)
-    str10 = tab3
-    str9 = tab3.AddToggle
+    str10 = __UI.tab3
+    str9 = __UI.tab3.AddToggle
     str11 = {}
     str12 = "Auto Quest Sea 3"
     str11.Name = str12
@@ -9738,14 +9739,14 @@ if World2 then
         end
     end
     str9(str10)
-    str10 = tab3
-    str9 = tab3.AddSection
+    str10 = __UI.tab3
+    str9 = __UI.tab3.AddSection
     str11 = {}
     str12 = "Factory Sea 2"
     str11[1] = str12
     str9 = str9(str10, str11)
-    str11 = tab3
-    str10 = tab3.AddToggle
+    str11 = __UI.tab3
+    str10 = __UI.tab3.AddToggle
     str12 = {}
     str13 = "Auto Factory"
     str12.Name = str13
@@ -9795,14 +9796,14 @@ if World2 then
         end
     end
     str10(str11)
-    str11 = tab3
-    str10 = tab3.AddSection
+    str11 = __UI.tab3
+    str10 = __UI.tab3.AddSection
     str12 = {}
     str13 = "Boss Dark Beard"
     str12[1] = str13
     str10 = str10(str11, str12)
-    str12 = tab3
-    str11 = tab3.AddToggle
+    str12 = __UI.tab3
+    str11 = __UI.tab3.AddToggle
     str13 = {}
     str14 = "Auto Kill Dark Beard"
     str13.Name = str14
@@ -9864,8 +9865,8 @@ if World2 then
         end
     end
     str11(str12)
-    str12 = tab3
-    str11 = tab3.AddToggle
+    str12 = __UI.tab3
+    str11 = __UI.tab3.AddToggle
     str13 = {}
     str14 = "Auto Kill Cursed Captain"
     str13.Name = str14
@@ -9930,14 +9931,14 @@ if World2 then
         end
     end
     str11(str12)
-    str12 = tab3
-    str11 = tab3.AddSection
+    str12 = __UI.tab3
+    str11 = __UI.tab3.AddSection
     str13 = {}
     str14 = "Auto Buy Haki MÃ u"
     str13[1] = str14
     str11 = str11(str12, str13)
-    str13 = tab3
-    str12 = tab3.AddToggle
+    str13 = __UI.tab3
+    str12 = __UI.tab3.AddToggle
     str14 = {}
     str15 = "Auto Buy Haki Colors"
     str14.Name = str15
@@ -9964,8 +9965,8 @@ if World2 then
         end
     end
     str12(str13)
-    str13 = tab3
-    str12 = tab3.AddToggle
+    str13 = __UI.tab3
+    str12 = __UI.tab3.AddToggle
     str14 = {}
     str15 = "Auto Buy Legendary Sword"
     str14.Title = str15
@@ -9995,14 +9996,14 @@ if World2 then
         end
     end
     str12(str13)
-    str13 = tab3
-    str12 = tab3.AddSection
+    str13 = __UI.tab3
+    str12 = __UI.tab3.AddSection
     str14 = {}
     str15 = "Quest Sword"
     str14[1] = str15
     str12 = str12(str13, str14)
-    str14 = tab3
-    str13 = tab3.AddToggle
+    str14 = __UI.tab3
+    str13 = __UI.tab3.AddToggle
     str15 = {}
     str15.Name = "Auto Get Longsword"
     str15.Description = "Tá»± Äá»ng Get Longsword"
@@ -10058,8 +10059,8 @@ if World2 then
         end
     end
     str13(str14)
-    str14 = tab3
-    str13 = tab3.AddToggle
+    str14 = __UI.tab3
+    str13 = __UI.tab3.AddToggle
     str15 = {}
     str15.Name = "Auto Get Sword Gravity Blade"
     str15.Description = "Tá»± Äá»ng Láº¥y Gravity Blade"
@@ -10117,8 +10118,8 @@ if World2 then
         end
     end
     str13(str14)
-    str14 = tab3
-    str13 = tab3.AddToggle
+    str14 = __UI.tab3
+    str13 = __UI.tab3.AddToggle
     str15 = {}
     str15.Name = "Auto Get Sword Flail"
     str15.Description = "Tá»± Äá»ng Láº¥y Flail"
@@ -10174,8 +10175,8 @@ if World2 then
         end
     end
     str13(str14)
-    str14 = tab3
-    str13 = tab3.AddToggle
+    str14 = __UI.tab3
+    str13 = __UI.tab3.AddToggle
     str15 = {}
     str15.Name = "Auto Get Sword Rengoku"
     str15.Description = "Tá»± Äá»ng Láº¥y Rengoku"
@@ -10251,8 +10252,8 @@ if World2 then
         end)
     end
     str13(str14)
-    str14 = tab3
-    str13 = tab3.AddToggle
+    str14 = __UI.tab3
+    str13 = __UI.tab3.AddToggle
     str15 = {}
     str15.Name = "Auto Get Sword Dragon Trident"
     str15.Description = "Tá»± Äá»ng Láº¥y Dragon Trident"
@@ -10310,20 +10311,20 @@ if World2 then
     str13(str14)
 end
 if World3 then
-    str9 = tab3
-    local addSection4 = tab3.AddSection
+    str9 = __UI.tab3
+    local addSection4 = __UI.tab3.AddSection
     str10 = {}
     str11 = "Quest Sea 3"
     str10[1] = str11
     local v9 = addSection4(str9, str10)
-    str10 = tab3
-    str9 = tab3.AddSection
+    str10 = __UI.tab3
+    str9 = __UI.tab3.AddSection
     str11 = {}
     str12 = "Boss Rip indra"
     str11[1] = str12
     str9 = str9(str10, str11)
-    str11 = tab3
-    str10 = tab3.AddToggle
+    str11 = __UI.tab3
+    str10 = __UI.tab3.AddToggle
     str12 = {}
     str13 = "Auto kill Rip Indra"
     str12.Name = str13
@@ -10417,8 +10418,8 @@ if World3 then
         end)
     end
     str12(str13)
-    str13 = tab3
-    str12 = tab3.AddToggle
+    str13 = __UI.tab3
+    str12 = __UI.tab3.AddToggle
     str14 = {}
     str15 = "Auto Haki Colors"
     str14.Name = str15
@@ -10445,14 +10446,14 @@ if World3 then
         end
     end
     str12(str13)
-    str13 = tab3
-    str12 = tab3.AddSection
+    str13 = __UI.tab3
+    str12 = __UI.tab3.AddSection
     str14 = {}
     str15 = "Quest Skull Guitar"
     str14[1] = str15
     str12 = str12(str13, str14)
-    str14 = tab3
-    str13 = tab3.AddToggle
+    str14 = __UI.tab3
+    str13 = __UI.tab3.AddToggle
     str15 = {}
     str15.Name = "Auto Skull Guitar"
     str15.Description = "Tá»± Äá»ng Láº¥y ÄÃ n GuiTar"
@@ -10863,8 +10864,8 @@ if World3 then
         end
     end
     str13(str14)
-    str14 = tab3
-    str13 = tab3.AddToggle
+    str14 = __UI.tab3
+    str13 = __UI.tab3.AddToggle
     str15 = {}
     str15.Name = "Kill Elite Hunter"
     str15.Description = "Tá»± Äá»ng ÄÃ¡nh Elite Hunter"
@@ -10952,13 +10953,13 @@ if World3 then
         end
     end
     str13(str14)
-    str14 = tab3
-    str13 = tab3.AddSection
+    str14 = __UI.tab3
+    str13 = __UI.tab3.AddSection
     str15 = {}
     str15[1] = "Auto CDK"
     str13 = str13(str14, str15)
-    str15 = tab3
-    str14 = tab3.AddToggle
+    str15 = __UI.tab3
+    str14 = __UI.tab3.AddToggle
     str16 = "Auto Cdk [Beta]"
     local tbl2 = {Name = str16}
     str16 = "Tá»± Äá»ng Láº¥y Xong Kiáº¿m Ã Äen"
@@ -11074,8 +11075,8 @@ if World3 then
         end
     end
     str14(str15)
-    str15 = tab3
-    str14 = tab3.AddToggle
+    str15 = __UI.tab3
+    str14 = __UI.tab3.AddToggle
     str16 = "Auto Get Yama"
     local tbl9 = {Name = str16}
     str16 = "Tá»± Äá»ng Láº¥y Kiáº¿m Yama"
@@ -11126,8 +11127,8 @@ if World3 then
         end
     end
     str14(str15)
-    str15 = tab3
-    str14 = tab3.AddToggle
+    str15 = __UI.tab3
+    str14 = __UI.tab3.AddToggle
     str16 = "Auto Holy Torch Tushita"
     local tbl10 = {Name = str16}
     str16 = "Tá»± Äá»ng Torch Tushita"
@@ -11207,8 +11208,8 @@ if World3 then
         end
     end
     str14(str15)
-    str15 = tab3
-    str14 = tab3.AddToggle
+    str15 = __UI.tab3
+    str14 = __UI.tab3.AddToggle
     str16 = "Auto Get Tushita"
     local tbl11 = {Name = str16}
     str16 = "Tá»± Äá»ng Láº¥y Tushita"
@@ -11267,11 +11268,11 @@ if World3 then
         end
     end
     str14(str15)
-    str15 = tab3
-    str14 = tab3.AddSection
+    str15 = __UI.tab3
+    str14 = __UI.tab3.AddSection
     str16 = "Quest Sword"
     str14 = str14(str15, {str16})
-    str15 = tab3.AddToggle
+    str15 = __UI.tab3.AddToggle
     str16 = {}
     str17 = "Auto Get Sword Twin Hooks"
     str16.Name = str17
@@ -11284,7 +11285,7 @@ if World3 then
         StopTween(_G.SwodTwinHooks)
     end
     str16.Callback = str17
-    str15(tab3, str16)
+    str15(__UI.tab3, str16)
     str15 = spawn
     str15(function()
         while true do
@@ -11332,7 +11333,7 @@ if World3 then
             end
         end
     end)
-    str15 = tab3.AddToggle
+    str15 = __UI.tab3.AddToggle
     str16 = {}
     str17 = "Auto Get Sword Canvander"
     str16.Name = str17
@@ -11345,7 +11346,7 @@ if World3 then
         StopTween(_G.SwodCanvander)
     end
     str16.Callback = str17
-    str15(tab3, str16)
+    str15(__UI.tab3, str16)
     str15 = spawn
     str15(function()
         while true do
@@ -11391,7 +11392,7 @@ if World3 then
             end
         end
     end)
-    str15 = tab3.AddToggle
+    str15 = __UI.tab3.AddToggle
     str16 = {}
     str17 = "Auto Get Sword Buddy"
     str16.Name = str17
@@ -11404,7 +11405,7 @@ if World3 then
         StopTween(_G.SwodsBuddy)
     end
     str16.Callback = str17
-    str15(tab3, str16)
+    str15(__UI.tab3, str16)
     str15 = spawn
     str15(function()
         while true do
@@ -11454,8 +11455,8 @@ if World3 then
     end)
 end
 str10 = "AddButton"
-str9 = tab4
-local v68 = tab4[str10]
+str9 = __UI.tab4
+local v68 = __UI.tab4[str10]
 str10 = {}
 str11 = "Tween Dragon Dojo"
 str10.Title = str11
@@ -11467,8 +11468,8 @@ function str11()
 end
 str10.Callback = str11
 v68(str9, str10)
-str9 = tab4
-local addToggle8 = tab4.AddToggle
+str9 = __UI.tab4
+__UI.addToggle8 = __UI.tab4.AddToggle
 str10 = {}
 str11 = "Auto Dragon Huntery"
 str10.Name = str11
@@ -11481,7 +11482,7 @@ function str11(value)
     StopTween(_G.FarmBlazeEM)
 end
 str10.Callback = str11
-addToggle8(str9, str10)
+__UI.addToggle8(str9, str10)
 function checkQuesta()
     local tbl2, label
     tbl2 = {}
@@ -11640,15 +11641,15 @@ function str9()
     end
 end
 spawn(str9)
-str9 = tab4
-local addSection5 = tab4.AddSection
+str9 = __UI.tab4
+local addSection5 = __UI.tab4.AddSection
 str10 = {}
 str11 = "Volcanic Island"
 str10[1] = str11
 local v69 = addSection5(str9, str10)
 str11 = "AddButton"
-str10 = tab4
-str9 = tab4[str11]
+str10 = __UI.tab4
+str9 = __UI.tab4[str11]
 str11 = {}
 str12 = "Craft Volcanic Magnet"
 str11.Title = str12
@@ -11660,8 +11661,8 @@ function str12()
 end
 str11.Callback = str12
 str9(str10, str11)
-str10 = tab4
-str9 = tab4.AddParagraph
+str10 = __UI.tab4
+str9 = __UI.tab4.AddParagraph
 str11 = {}
 str12 = "Check Prehistoric Island"
 str11.Title = str12
@@ -11685,8 +11686,8 @@ function str11()
     end
 end
 str10(str11)
-str11 = tab4
-str10 = tab4.AddToggle
+str11 = __UI.tab4
+str10 = __UI.tab4.AddToggle
 str12 = {}
 str13 = "Auto Find Prehistoric"
 str12.Name = str13
@@ -11846,8 +11847,8 @@ function tbl()
     str17 = false
 end
 str18(v7, tbl)
-v7 = tab4
-str18 = tab4.AddToggle
+v7 = __UI.tab4
+str18 = __UI.tab4.AddToggle
 tbl = {}
 str19 = "Auto Tween Prehistoric Island"
 tbl.Name = str19
@@ -11895,8 +11896,8 @@ function v7()
     end
 end
 str18(v7)
-v7 = tab4
-str18 = tab4.AddToggle
+v7 = __UI.tab4
+str18 = __UI.tab4.AddToggle
 tbl = {}
 str19 = "Auto Defend Prehistoric"
 tbl.Name = str19
@@ -12033,7 +12034,7 @@ spawn(function()
         end
     end
 end)
-local section9 = tab4:AddSection({"Auto Skill"})
+__UI.section9 = __UI.tab4:AddSection({"Auto Skill"})
 str20 = "Auto Use Melee"
 local tbl12 = {Name = str20}
 str20 = "DÃ¹ng Melee Äá» PhÃ¡ Lava"
@@ -12045,7 +12046,7 @@ function str20(value)
     StopTween(_G.UseMelee)
 end
 tbl12.Callback = str20
-tab4:AddToggle(tbl12)
+__UI.tab4:AddToggle(tbl12)
 str20 = "Auto Use Sword"
 local tbl13 = {Name = str20}
 str20 = "DÃ¹ng Sword Äá» PhÃ¡ Lava"
@@ -12057,7 +12058,7 @@ function str20(value)
     StopTween(_G.UseSword)
 end
 tbl13.Callback = str20
-tab4:AddToggle(tbl13)
+__UI.tab4:AddToggle(tbl13)
 str20 = "Auto Use Gun"
 local tbl14 = {Name = str20}
 str20 = "DÃ¹ng Gun Äá» PhÃ¡ Lava"
@@ -12069,9 +12070,9 @@ function str20(value)
     StopTween(_G.UseGun)
 end
 tbl14.Callback = str20
-tab4:AddToggle(tbl14)
+__UI.tab4:AddToggle(tbl14)
 str20 = "Auto Kill Golem"
-local section10 = tab4:AddSection({str20})
+__UI.section10 = __UI.tab4:AddSection({str20})
 str20 = {}
 str20.Name = "Auto Kill Golem"
 str20.Description = "Tá»± Äá»ng Kill Golem"
@@ -12080,7 +12081,7 @@ str20.Callback = function(value)
     _G.KillGolem = value
     StopTween(_G.KillGolem)
 end
-tab4:AddToggle(str20)
+__UI.tab4:AddToggle(str20)
 spawn(function()
     while true do
         if not wait() then
@@ -12137,7 +12138,7 @@ str20.Callback = function(value)
     _G.Kill_Aura = value
     StopTween(_G.Kill_Aura)
 end
-tab4:AddToggle(str20)
+__UI.tab4:AddToggle(str20)
 spawn(function()
     pcall(function()
         local str38, character
@@ -12194,9 +12195,9 @@ spawn(function()
 end)
 str20 = {}
 str20[1] = "Auto Collect Bone,Egg"
-local section11 = tab4:AddSection(str20)
-str20 = tab4
-tab4.AddToggle(str20, {
+__UI.section11 = __UI.tab4:AddSection(str20)
+str20 = __UI.tab4
+__UI.tab4.AddToggle(str20, {
     Name = "Auto Collect Bone",
     Description = "Tá»± Äá»ng Nháº·t SÆ°Æ¡ng",
     Default = false,
@@ -12222,8 +12223,8 @@ function str20()
     end
 end
 spawn(str20)
-str20 = tab4
-tab4.AddToggle(str20, {
+str20 = __UI.tab4
+__UI.tab4.AddToggle(str20, {
     Name = "Auto Collect Egg",
     Description = "Tá»± Äá»ng Nháº·t Trá»©ng",
     Default = false,
@@ -12245,11 +12246,11 @@ function str20()
     end
 end
 spawn(str20)
-str20 = tab5
-local section12 = tab5.AddSection(str20, {"Kitsune Island"})
-str20 = tab5.AddParagraph
+str20 = __UI.tab5
+__UI.section12 = __UI.tab5.AddSection(str20, {"Kitsune Island"})
+str20 = __UI.tab5.AddParagraph
 str21 = "Check Kitsune Island"
-str20 = str20(tab5, {Title = str21, Content = "Loading..."})
+str20 = str20(__UI.tab5, {Title = str21, Content = "Loading..."})
 task.spawn(function()
     while true do
         if not task.wait(1) then
@@ -12277,7 +12278,7 @@ function str22(value)
     StopTween(_G.TweenToKitsune)
 end
 str21.Callback = str22
-tab5:AddToggle(str21)
+__UI.tab5:AddToggle(str21)
 spawn(function()
     local kitsuneIsland
     while not kitsuneIsland do
@@ -12336,7 +12337,7 @@ function str22(arg)
     end
 end
 str21.Callback = str22
-tab5:AddToggle(str21)
+__UI.tab5:AddToggle(str21)
 str21 = {}
 str22 = "Auto Azuer Ember"
 str21.Name = str22
@@ -12349,7 +12350,7 @@ function str22(value)
     StopTween(_G.AutoAzuerEmber)
 end
 str21.Callback = str22
-tab5:AddToggle(str21)
+__UI.tab5:AddToggle(str21)
 spawn(function()
     while true do
         if not wait() then
@@ -12367,9 +12368,9 @@ end)
 str21 = {}
 str22 = "Sea Events"
 str21[1] = str22
-local section13 = tab5:AddSection(str21)
-str21 = tab5
-local addToggle9 = tab5.AddToggle
+__UI.section13 = __UI.tab5:AddSection(str21)
+str21 = __UI.tab5
+__UI.addToggle9 = __UI.tab5.AddToggle
 str22 = {}
 str22.Name = "Auto Drive Boats"
 str22.Description = "Tá»± Äá»ng LÃ¡i Thuyá»n"
@@ -12378,7 +12379,7 @@ str22.Callback = function(value)
     _G.SailBoat = value
     StopTween(_G.SailBoat)
 end
-addToggle9(str21, str22)
+__UI.addToggle9(str21, str22)
 function str21()
     while true do
         if not wait() then
@@ -12472,8 +12473,8 @@ function str21()
     end)
 end
 spawn(str21)
-str21 = tab5
-local addToggle10 = tab5.AddToggle
+str21 = __UI.tab5
+__UI.addToggle10 = __UI.tab5.AddToggle
 str22 = {}
 str22.Name = "Auto Kill Terror Shank"
 str22.Description = "Tá»± ÄÃ¡nh Terror Shank"
@@ -12482,7 +12483,7 @@ str22.Callback = function(value)
     _G.Autoterrorshark = value
     StopTween(_G.Autoterrorshark)
 end
-addToggle10(str21, str22)
+__UI.addToggle10(str21, str22)
 function str21()
     while true do
         if not wait() then
@@ -12657,8 +12658,8 @@ function str21()
     end
 end
 spawn(str21)
-str21 = tab5
-local addToggle11 = tab5.AddToggle
+str21 = __UI.tab5
+__UI.addToggle11 = __UI.tab5.AddToggle
 str22 = {}
 str22.Name = "Auto Kill Shark"
 str22.Description = "Tá»± Äá»ng ÄÃ¡nh Shark"
@@ -12667,7 +12668,7 @@ str22.Callback = function(value)
     _G.KillShark = value
     StopTween(_G.KillShark)
 end
-addToggle11(str21, str22)
+__UI.addToggle11(str21, str22)
 function str21()
     while true do
         if not wait() then
@@ -12737,8 +12738,8 @@ function str21()
     end
 end
 spawn(str21)
-str21 = tab5
-local addToggle12 = tab5.AddToggle
+str21 = __UI.tab5
+__UI.addToggle12 = __UI.tab5.AddToggle
 str22 = {}
 str22.Name = "Auto Kill Piranha"
 str22.Description = "Tá»± Äá»ng ÄÃ¡nh Piranha"
@@ -12747,7 +12748,7 @@ str22.Callback = function(value)
     _G.KillPiranha = value
     StopTween(_G.KillPiranha)
 end
-addToggle12(str21, str22)
+__UI.addToggle12(str21, str22)
 function str21()
     while true do
         if not wait() then
@@ -12806,8 +12807,8 @@ function str21()
     end
 end
 spawn(str21)
-str21 = tab5
-local addToggle13 = tab5.AddToggle
+str21 = __UI.tab5
+__UI.addToggle13 = __UI.tab5.AddToggle
 str22 = {}
 str22.Name = "Auto Kill Fish Crew Member"
 str22.Description = "Tá»± Äá»ng ThÃ nh viÃªn phi hÃ nh ÄoÃ n Auto Kill Fish"
@@ -12816,7 +12817,7 @@ str22.Callback = function(value)
     _G.KillFishCrew = value
     StopTween(_G.KillFishCrew)
 end
-addToggle13(str21, str22)
+__UI.addToggle13(str21, str22)
 function str21()
     while true do
         if not wait() then
@@ -12882,13 +12883,13 @@ function str21()
     end
 end
 spawn(str21)
-str21 = tab5
-local addSection6 = tab5.AddSection
+str21 = __UI.tab5
+local addSection6 = __UI.tab5.AddSection
 str22 = {}
 str22[1] = "Mirage Island"
 local v84 = addSection6(str21, str22)
-str22 = tab5
-str21 = tab5.AddParagraph
+str22 = __UI.tab5
+str21 = __UI.tab5.AddParagraph
 str21 = str21(str22, {Title = "Check Mirage Island", Content = "Loading..."})
 str22 = task
 str22 = str22.spawn
@@ -12907,8 +12908,8 @@ str22(function()
         end)
     end
 end)
-str22 = tab5.AddToggle
-str22(tab5, {
+str22 = __UI.tab5.AddToggle
+str22(__UI.tab5, {
     Name = "Tween Mirage Island",
     Description = "Tá»± Äá»ng Bay Tá»i Äáº£o BÃ­ áº¨n",
     Default = false,
@@ -12934,8 +12935,8 @@ str22(function()
         end)
     end
 end)
-str22 = tab5.AddToggle
-str22(tab5, {
+str22 = __UI.tab5.AddToggle
+str22(__UI.tab5, {
     Title = "Esp Mirage Island",
     Description = "ï¿½á»nh Vá» Äáº£o BÃ­ áº¨n",
     Value = false,
@@ -12956,8 +12957,8 @@ str22(tab5, {
         end
     end,
 })
-str22 = tab5.AddToggle
-str22(tab5, {
+str22 = __UI.tab5.AddToggle
+str22(__UI.tab5, {
     Name = "Look Moon + Auto V3",
     Description = "Tá»± Äá»ng NhÃ¬n TrÄng VÃ  Báº­t Tá»c V3",
     Default = false,
@@ -12986,7 +12987,7 @@ spawn(function()
         end)
     end
 end)
-tab5:AddToggle({
+__UI.tab5:AddToggle({
     Name = "Auto Tween To Gear",
     Description = "Tá»± Äá»ng Bay Äáº¿n Gear",
     Default = false,
@@ -13015,7 +13016,7 @@ spawn(function()
         end
     end)
 end)
-local section14 = tab6:AddSection({"Teleport V4"})
+__UI.section14 = __UI.tab6:AddSection({"Teleport V4"})
 str23 = "Teleport To Top GreatTree"
 local tbl15 = {Title = str23}
 str23 = false
@@ -13024,7 +13025,7 @@ function str23()
     Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3030.39453125, 2280.6171875, -7320.18359375)
 end
 tbl15.Callback = str23
-tab6:AddButton(tbl15)
+__UI.tab6:AddButton(tbl15)
 str23 = "Teleport Temple Of Time"
 local tbl16 = {Title = str23}
 str23 = false
@@ -13033,7 +13034,7 @@ function str23()
     Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
 end
 tbl16.Callback = str23
-tab6:AddButton(tbl16)
+__UI.tab6:AddButton(tbl16)
 str23 = "Teleport Lever Pull"
 local tbl17 = {Title = str23}
 str23 = false
@@ -13042,7 +13043,7 @@ function str23()
     topos(CFrame.new(28575.181640625, 14936.6279296875, 72.31636810302734))
 end
 tbl17.Callback = str23
-tab6:AddButton(tbl17)
+__UI.tab6:AddButton(tbl17)
 str23 = "Teleport To The Clock"
 local tbl18 = {Title = str23}
 str23 = false
@@ -13051,11 +13052,11 @@ function str23()
     topos(CFrame.new(29553.7812, 15066.6133, -88.2750015, 1, 0, 0, 0, 1, 0, 0, 0, 1))
 end
 tbl18.Callback = str23
-tab6:AddButton(tbl18)
+__UI.tab6:AddButton(tbl18)
 str23 = "Trial V4"
-local section15 = tab6:AddSection({str23})
+__UI.section15 = __UI.tab6:AddSection({str23})
 str23 = "AddButton"
-local v92 = tab6[str23]
+local v92 = __UI.tab6[str23]
 str23 = {}
 str24 = "Auto Race Door"
 str23.Title = str24
@@ -13089,9 +13090,9 @@ function str24()
     end
 end
 str23.Callback = str24
-v92(tab6, str23)
+v92(__UI.tab6, str23)
 str23 = "AddButton"
-local v93 = tab6[str23]
+local v93 = __UI.tab6[str23]
 str23 = {}
 str24 = "Buy Acient One Quest"
 str23.Title = str24
@@ -13101,7 +13102,7 @@ function str24()
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("UpgradeRace", "Buy")
 end
 str23.Callback = str24
-v93(tab6, str23)
+v93(__UI.tab6, str23)
 str23 = {}
 str24 = "Auto Trial Human Ghost"
 str23.Name = str24
@@ -13114,7 +13115,7 @@ function str24(value)
     StopTween(_G.Kill_Aura)
 end
 str23.Callback = str24
-tab6:AddToggle(str23)
+__UI.tab6:AddToggle(str23)
 str23 = {}
 str24 = "Auto Trailer All Race"
 str23.Name = str24
@@ -13127,7 +13128,7 @@ function str24(value)
     StopTween(_G.AutoQuestRace)
 end
 str23.Callback = str24
-tab6:AddToggle(str23)
+__UI.tab6:AddToggle(str23)
 spawn(function()
     pcall(function()
         local character
@@ -13479,7 +13480,7 @@ function str24(value)
     StopTween(_G.AutoKillV4)
 end
 str23.Callback = str24
-tab6:AddToggle(str23)
+__UI.tab6:AddToggle(str23)
 spawn(function()
     while true do
         if not task.wait() then
@@ -13533,9 +13534,9 @@ end)
 str23 = {}
 str24 = "Auto Skill"
 str23[1] = str24
-local section16 = tab6:AddSection(str23)
-str23 = tab6
-local addToggle14 = tab6.AddToggle
+__UI.section16 = __UI.tab6:AddSection(str23)
+str23 = __UI.tab6
+__UI.addToggle14 = __UI.tab6.AddToggle
 str24 = {}
 str25 = "Auto Skill Z"
 str24.Name = str25
@@ -13548,9 +13549,9 @@ function str25(value)
     StopTween(_G.XaiSkillZ)
 end
 str24.Callback = str25
-addToggle14(str23, str24)
-str23 = tab6
-local addToggle15 = tab6.AddToggle
+__UI.addToggle14(str23, str24)
+str23 = __UI.tab6
+__UI.addToggle15 = __UI.tab6.AddToggle
 str24 = {}
 str25 = "Auto Skill X"
 str24.Name = str25
@@ -13563,9 +13564,9 @@ function str25(value)
     StopTween(_G.XaiSkillX)
 end
 str24.Callback = str25
-addToggle15(str23, str24)
-str23 = tab6
-local addToggle16 = tab6.AddToggle
+__UI.addToggle15(str23, str24)
+str23 = __UI.tab6
+__UI.addToggle16 = __UI.tab6.AddToggle
 str24 = {}
 str25 = "Auto Skill C"
 str24.Name = str25
@@ -13578,15 +13579,15 @@ function str25(value)
     StopTween(_G.XaiSkillC)
 end
 str24.Callback = str25
-addToggle16(str23, str24)
-str23 = tab7
-local addSection7 = tab7.AddSection
+__UI.addToggle16(str23, str24)
+str23 = __UI.tab7
+local addSection7 = __UI.tab7.AddSection
 str24 = {}
 str25 = "Raid Fruits"
 str24[1] = str25
 local v96 = addSection7(str23, str24)
-str24 = tab7
-str23 = tab7.AddDropdown
+str24 = __UI.tab7
+str23 = __UI.tab7.AddDropdown
 str25 = {}
 str25.Name = "Select Chip"
 str26 = "Sand"
@@ -13614,8 +13615,8 @@ str25.Callback = function(value)
     _G.SelectChip = value
 end
 str23(str24, str25)
-str24 = tab7
-str23 = tab7.AddToggle
+str24 = __UI.tab7
+str23 = __UI.tab7.AddToggle
 str25 = {}
 str25.Name = "Auto Buy Chip"
 str25.Description = "Tá»± Äá»ng Mua Chip Raid"
@@ -13641,8 +13642,8 @@ function str24()
     end
 end
 str23(str24)
-str24 = tab7
-str23 = tab7.AddToggle
+str24 = __UI.tab7
+str23 = __UI.tab7.AddToggle
 str25 = {}
 str25.Name = "Auto Start Raid"
 str25.Description = "Báº¯t Äáº§u Raid"
@@ -13687,8 +13688,8 @@ function str24()
     end
 end
 str23(str24)
-str24 = tab7
-str23 = tab7.AddToggle
+str24 = __UI.tab7
+str23 = __UI.tab7.AddToggle
 str25 = {}
 str25.Name = "Auto Farm Raid Next Island"
 str25.Description = "ï¿½Ã¡nh QuÃ¡i VÃ  Äi Chuyá»n Äáº£o"
@@ -13778,7 +13779,7 @@ function str26(value)
     _G.Autofruit = value
 end
 tbl19.Callback = str26
-tab7:AddToggle(tbl19)
+__UI.tab7:AddToggle(tbl19)
 spawn(function()
     while true do
         if not wait(0.1) then
@@ -13825,9 +13826,9 @@ spawn(function()
     end
 end)
 str26 = "Raid Law Sea 2"
-local section17 = tab7:AddSection({str26})
+__UI.section17 = __UI.tab7:AddSection({str26})
 str26 = "AddButton"
-local v101 = tab7[str26]
+local v101 = __UI.tab7[str26]
 str26 = {}
 str27 = "Auto Buy Chip Law"
 str26.Title = str27
@@ -13840,9 +13841,9 @@ function str27()
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(tbl2))
 end
 str26.Callback = str27
-v101(tab7, str26)
+v101(__UI.tab7, str26)
 str26 = "AddButton"
-local v102 = tab7[str26]
+local v102 = __UI.tab7[str26]
 str26 = {}
 str27 = "Auto Start Raid Law"
 str26.Title = str27
@@ -13852,7 +13853,7 @@ function str27()
     fireclickdetector(game:GetService("Workspace").Map.CircleIsland.RaidSummon.Button.Main.ClickDetector)
 end
 str26.Callback = str27
-v102(tab7, str26)
+v102(__UI.tab7, str26)
 str26 = {}
 str27 = "Auto Farm Law Raid"
 str26.Name = str27
@@ -13864,7 +13865,7 @@ function str27(value)
     _G.AutoLawRaid = value
 end
 str26.Callback = str27
-tab7:AddToggle(str26)
+__UI.tab7:AddToggle(str26)
 spawn(function()
     while true do
         if not wait() then
@@ -13913,9 +13914,9 @@ end)
 str26 = {}
 str27 = "Fruits"
 str26[1] = str27
-local section18 = tab8:AddSection(str26)
-str26 = tab8
-local addToggle17 = tab8.AddToggle
+__UI.section18 = __UI.tab8:AddSection(str26)
+str26 = __UI.tab8
+__UI.addToggle17 = __UI.tab8.AddToggle
 str27 = {}
 str28 = "Auto Random Fruits"
 str27.Name = str28
@@ -13927,7 +13928,7 @@ function str28(value)
     _G.RandomAuto = value
 end
 str27.Callback = str28
-addToggle17(str26, str27)
+__UI.addToggle17(str26, str27)
 function str26()
     pcall(function()
         while true do
@@ -13941,8 +13942,8 @@ function str26()
     end)
 end
 spawn(str26)
-str26 = tab8
-local addToggle18 = tab8.AddToggle
+str26 = __UI.tab8
+__UI.addToggle18 = __UI.tab8.AddToggle
 str27 = {}
 str28 = "Auto Store Fruits"
 str27.Title = str28
@@ -13955,7 +13956,7 @@ function str28(arg)
     env.AutoStoreFruit = arg
 end
 str27.Callback = str28
-addToggle18(str26, str27)
+__UI.addToggle18(str26, str27)
 function str26()
     while true do
         if not task.wait(0.2) then
@@ -14070,8 +14071,8 @@ function str26()
     end
 end
 spawn(str26)
-str26 = tab8
-local addToggle19 = tab8.AddToggle
+str26 = __UI.tab8
+__UI.addToggle19 = __UI.tab8.AddToggle
 str27 = {}
 str28 = "Teleport To Fruit Spawn"
 str27.Name = str28
@@ -14083,7 +14084,7 @@ function str28(value)
     _G.Tweenfruit = value
 end
 str27.Callback = str28
-addToggle19(str26, str27)
+__UI.addToggle19(str26, str27)
 function str26()
     while true do
         if not wait(0.1) then
@@ -14099,8 +14100,8 @@ function str26()
     end
 end
 spawn(str26)
-str26 = tab8
-local addToggle20 = tab8.AddToggle
+str26 = __UI.tab8
+__UI.addToggle20 = __UI.tab8.AddToggle
 str27 = {}
 str28 = "Auto Teleport Fruits"
 str27.Name = str28
@@ -14112,7 +14113,7 @@ function str28(value)
     _G.Grabfruit = value
 end
 str27.Callback = str28
-addToggle20(str26, str27)
+__UI.addToggle20(str26, str27)
 function str26()
     while true do
         if not wait(0.1) then
@@ -14128,8 +14129,8 @@ function str26()
     end
 end
 spawn(str26)
-str26 = tab8
-local addSection8 = tab8.AddSection
+str26 = __UI.tab8
+local addSection8 = __UI.tab8.AddSection
 str27 = {}
 str28 = "Check Stock Fruits"
 str27[1] = str28
@@ -14193,11 +14194,11 @@ function str28()
     end
     return text
 end
-str29 = tab8.AddParagraph
+str29 = __UI.tab8.AddParagraph
 str30 = {}
 str30.Title = "Stock TrÃ¡i CÃ¢y"
 str30.Content = "ï¿½ang táº£i dá»¯ liá»u..."
-str29 = str29(tab8, str30)
+str29 = str29(__UI.tab8, str30)
 function str30()
     while true do
         if not task.wait(60) then
@@ -14217,8 +14218,8 @@ function str30()
     v:Set(v2)
 end
 pcall(str30)
-str30 = tab9
-local addSection9 = tab9.AddSection
+str30 = __UI.tab9
+local addSection9 = __UI.tab9.AddSection
 str31 = "Teleport Island | Di Chuyá»n Äáº¿n Äáº£o"
 local v108 = addSection9(str30, {str31})
 function str30(cframe2)
@@ -14316,8 +14317,8 @@ else
     str31[18] = str34
     v112 = str31
 end
-str31 = tab9.AddDropdown
-str31(tab9, {
+str31 = __UI.tab9.AddDropdown
+str31(__UI.tab9, {
     Name = "Select Island",
     Description = "Chá»n Äáº£o Äá» teleport",
     Options = v112,
@@ -14326,8 +14327,8 @@ str31(tab9, {
         _G.SelectIsland = value
     end,
 })
-str31 = tab9.AddToggle
-str31(tab9, {
+str31 = __UI.tab9.AddToggle
+str31(__UI.tab9, {
     Name = "Auto Tween To Island",
     Description = "Tá»± Äá»ng di chuyá»n tá»i Äáº£o ÄÃ£ chá»n",
     Default = false,
@@ -14521,44 +14522,44 @@ task.spawn(function()
         end
     end
 end)
-local section19 = tab9:AddSection({"Teleport Sea | Di Chuyá»n Sea 1,2,3"})
-tab9:AddButton({
+__UI.section19 = __UI.tab9:AddSection({"Teleport Sea | Di Chuyá»n Sea 1,2,3"})
+__UI.tab9:AddButton({
     Name = "Sea 1",
     Description = "Biá»n 1",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelMain")
     end,
 })
-tab9:AddButton({
+__UI.tab9:AddButton({
     Name = "Sea 2",
     Description = "Biá»n 2",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelDressrosa")
     end,
 })
-tab9:AddButton({
+__UI.tab9:AddButton({
     Name = "Sea 3",
     Description = "Biá»n 3",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
     end,
 })
-local section20 = tab10:AddSection({"Teleport Player | Di Chuyá»n Äáº¿n Player"})
+__UI.section20 = __UI.tab10:AddSection({"Teleport Player | Di Chuyá»n Äáº¿n Player"})
 local list2 = {}
 local players = game.Players
 str33 = "GetPlayers"
 str32 = players
-local v125, v131, v134, v137, v140, v143, v146, v149, v152, v155, v158, v165, v169, v176, v180, v184, v188, v192, v196, v200, v204, v208, v212, v216, v220, v224, v228, v232, v236, v240, v244, v248, v252, v256, v260, v264, v268, v272, v276, v280, v284, v288, v292, v296, v300, v304, v308, v312, v316, v320, v324, v328, v332, v336, v340, v344, v348, v352, v356, v360, v364, v368, v372, v376
-v125, str32, str33, v131, v134, v137, v140, v143, v146, v149, v152, v155, v158, str34, str35, str36, flag, flag2, flag3, flag4, num11, v165, v169, v176, str37, v180, v184, v188, v192, v196, v200, v204, v208, v212, v216, v220, v224, v228, v232, v236, v240, v244, v248, v252, v256, v260, v264, v268, v272, v276, v280, v284, v288, v292, v296, v300, v304, v308, v312, v316, v320, v324, v328, v332, v336, v340, v344, v348, v352, v356, v360, v364, v368, v372, v376 = players[str33](str32)
+local __dv3 = {}
+__dv3.v125 = players[str33](str32); str32, str33, __dv3.v131, __dv3.v134, __dv3.v137, __dv3.v140, __dv3.v143, __dv3.v146, __dv3.v149, __dv3.v152, __dv3.v155, __dv3.v158 = nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil; str34, str35, str36, flag, flag2, flag3, flag4, num11, __dv3.v165, __dv3.v169, __dv3.v176, str37 = nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil; __dv3.v180, __dv3.v184, __dv3.v188, __dv3.v192, __dv3.v196, __dv3.v200, __dv3.v204, __dv3.v208, __dv3.v212, __dv3.v216, __dv3.v220, __dv3.v224 = nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil; __dv3.v228, __dv3.v232, __dv3.v236, __dv3.v240, __dv3.v244, __dv3.v248, __dv3.v252, __dv3.v256, __dv3.v260, __dv3.v264, __dv3.v268, __dv3.v272 = nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil; __dv3.v276, __dv3.v280, __dv3.v284, __dv3.v288, __dv3.v292, __dv3.v296, __dv3.v300, __dv3.v304, __dv3.v308, __dv3.v312, __dv3.v316, __dv3.v320 = nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil; __dv3.v324, __dv3.v328, __dv3.v332, __dv3.v336, __dv3.v340, __dv3.v344, __dv3.v348, __dv3.v352, __dv3.v356, __dv3.v360, __dv3.v364, __dv3.v368 = nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil; __dv3.v372, __dv3.v376 = nil, nil
 local v121, v126
-v121, v126, str32 = pairs(v125, str32, str33, v131, v134, v137, v140, v143, v146, v149, v152, v155, v158, str34, str35, str36, flag, flag2, flag3, flag4, num11, v165, v169, v176, str37, v180, v184, v188, v192, v196, v200, v204, v208, v212, v216, v220, v224, v228, v232, v236, v240, v244, v248, v252, v256, v260, v264, v268, v272, v276, v280, v284, v288, v292, v296, v300, v304, v308, v312, v316, v320, v324, v328, v332, v336, v340, v344, v348, v352, v356, v360, v364, v368, v372, v376)
+v121, v126, str32 = pairs(__dv3.v125)
 for _, instance in v121, v126, str32 do
     table.insert(list2, instance.Name)
 end
 local v122 = nil
 str33 = "AddButton"
-str32 = tab10
-local v127 = tab10[str33]
+str32 = __UI.tab10
+local v127 = __UI.tab10[str33]
 str33 = {}
 str33.Title = "Get Quest Elite Players"
 str33.Description = "Nháº­n Nhiá»m Vá»¥ NgÆ°á»i ChÆ¡i"
@@ -14566,8 +14567,8 @@ str33.Callback = function()
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("PlayerHunter")
 end
 v127(str32, str33)
-str32 = tab10
-local addToggle21 = tab10.AddToggle
+str32 = __UI.tab10
+__UI.addToggle21 = __UI.tab10.AddToggle
 str33 = {}
 str33.Title = "Auto Kill Player Quest"
 str33.Description = "Bay Äáº¿n NgÆ°á»i ChÆ¡i ÄÆ°á»£c Nháº­n Nhiá»m Vá»¥"
@@ -14576,7 +14577,7 @@ str33.Callback = function(value)
     _G.AutoPlayerHunter = value
     StopTween(_G.AutoPlayerHunter)
 end
-addToggle21(str32, str33)
+__UI.addToggle21(str32, str33)
 function str32()
     game:GetService("RunService").Heartbeat:connect(function()
         pcall(function()
@@ -14640,8 +14641,8 @@ function str32()
     end
 end
 spawn(str32)
-str32 = tab10
-local addToggle22 = tab10.AddToggle
+str32 = __UI.tab10
+__UI.addToggle22 = __UI.tab10.AddToggle
 str33 = {}
 str33.Name = "Auto Safe Mode"
 str33.Description = "Tá»± Äá»ng An ToÃ n Di Chuyá»n LÃªn Trá»i An ToÃ n"
@@ -14650,7 +14651,7 @@ str33.Callback = function(value)
     _G.SafeMode = value
     StopTween(_G.SafeMode)
 end
-addToggle22(str32, str33)
+__UI.addToggle22(str32, str33)
 function str32()
     pcall(function()
         while true do
@@ -14664,8 +14665,8 @@ function str32()
     end)
 end
 spawn(str32)
-str32 = tab10
-local addSection10 = tab10.AddSection
+str32 = __UI.tab10
+local addSection10 = __UI.tab10.AddSection
 str33 = {}
 str33[1] = "Buff"
 local v128 = addSection10(str32, str33)
@@ -14698,7 +14699,7 @@ end)
 if str32.Character then
     str33(str32.Character)
 end
-tab10:AddSlider({
+__UI.tab10:AddSlider({
     Title = "Speed Cháº¡y by Dum hub",
     Min = 26,
     Max = 300,
@@ -14715,7 +14716,7 @@ tab10:AddSlider({
         end
     end,
 })
-tab10:AddSlider({
+__UI.tab10:AddSlider({
     Title = "Nháº£y Cao by Dum hub",
     Min = 50,
     Max = 500,
@@ -14732,7 +14733,7 @@ tab10:AddSlider({
         end
     end,
 })
-tab10:AddToggle({
+__UI.tab10:AddToggle({
     Name = "Delete Lava",
     Description = "XoÃ¡ Lava TrÃ¡nh Bá» Máº¥y Tháº±ng Kid Lá» DÃ¬m Lava :))",
     Default = false,
@@ -14762,8 +14763,8 @@ spawn(function()
         end
     end
 end)
-local section21 = tab10:AddSection({"Esp | Äá»nh Vá»..."})
-tab10:AddToggle({
+__UI.section21 = __UI.tab10:AddSection({"Esp | Äá»nh Vá»..."})
+__UI.tab10:AddToggle({
     Title = "Esp Players",
     Value = false,
     Callback = function(value)
@@ -14783,7 +14784,7 @@ tab10:AddToggle({
         end
     end,
 })
-tab10:AddToggle({
+__UI.tab10:AddToggle({
     Title = "Esp Chest",
     Value = false,
     Callback = function(value)
@@ -14803,7 +14804,7 @@ tab10:AddToggle({
         end
     end,
 })
-tab10:AddToggle({
+__UI.tab10:AddToggle({
     Title = "Esp Fruits",
     Value = false,
     Callback = function(value)
@@ -14823,7 +14824,7 @@ tab10:AddToggle({
         end
     end,
 })
-tab10:AddToggle({
+__UI.tab10:AddToggle({
     Title = "Esp Berry",
     Value = false,
     Callback = function(value)
@@ -14839,302 +14840,302 @@ tab10:AddToggle({
         end
     end,
 })
-local section22 = tab11:AddSection({"Buy Melee V1"})
-tab11:AddButton({
+__UI.section22 = __UI.tab11:AddSection({"Buy Melee V1"})
+__UI.tab11:AddButton({
     Title = "Buy Black Leg $150,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyBlackLeg")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Buy Electro $550,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectro")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Buy Water Kung Fu $750,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyFishmanKarate")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Buy Dragon Claw 1,500F",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward", "DragonClaw", "1")
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward", "DragonClaw", "2")
     end,
 })
-local section23 = tab11:AddSection({"Buy Melee V2"})
-tab11:AddButton({
+__UI.section23 = __UI.tab11:AddSection({"Buy Melee V2"})
+__UI.tab11:AddButton({
     Title = "Buy Superhuman $3,000,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySuperhuman")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Buy Death Step $5,000,000 5,000F",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Buy Sharkman Karate $2,500,000 5,000F",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true)
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Buy Electric Claw $3,000,000 5,000F",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Buy Dragon Talon $3,000,000 5,000F",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Buy God Human $5,000,000 5,000F",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Buy Sanguine Art $5,000,000 5,000F",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySanguineArt", true)
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySanguineArt")
     end,
 })
-local section24 = tab11:AddSection({"Buy Sea Event Crafting"})
-tab11:AddButton({
+__UI.section24 = __UI.tab11:AddSection({"Buy Sea Event Crafting"})
+__UI.tab11:AddButton({
     Title = "Craft Dragonheart",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CraftItem", "Craft", "Dragonheart")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Craft Dragonstorm",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CraftItem", "Craft", "Dragonstorm")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Craft DinoHood",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CraftItem", "Craft", "DinoHood")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Craft SharkTooth",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CraftItem", "Craft", "SharkTooth")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Craft TerrorJaw",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CraftItem", "Craft", "TerrorJaw")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Craft SharkAnchor",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CraftItem", "Craft", "SharkAnchor")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Craft LeviathanCrown",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CraftItem", "Craft", "LeviathanCrown")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Craft LeviathanShield",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CraftItem", "Craft", "LeviathanShield")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Craft LeviathanBoat",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CraftItem", "Craft", "LeviathanBoat")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Craft LegendaryScroll",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CraftItem", "Craft", "LegendaryScroll")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Craft MythicalScroll",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CraftItem", "Craft", "MythicalScroll")
     end,
 })
-local section25 = tab11:AddSection({"Buy Haki,Soru..."})
-tab11:AddButton({
+__UI.section25 = __UI.tab11:AddSection({"Buy Haki,Soru..."})
+__UI.tab11:AddButton({
     Title = "Buy Geppo $10,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki", "Geppo")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Buy Buso Haki $25,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki", "Buso")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Buy Soru $25,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki", "Soru")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Buy Observation Haki $750,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("KenTalk", "Buy")
     end,
 })
-local section26 = tab11:AddSection({"Buy Sword,Gun"})
-tab11:AddButton({
+__UI.section26 = __UI.tab11:AddSection({"Buy Sword,Gun"})
+__UI.tab11:AddButton({
     Title = "Buy Cutlass $1,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Cutlass")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Buy Katana $1,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Katana")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Buy Iron Mace $25,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Iron Mace")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Buy Dual Katana $12,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Duel Katana")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Buy Triple Katana $60,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Triple Katana")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Buy Pipe $100,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Pipe")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Buy Dual-Headed Blade $400,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Dual-Headed Blade")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Buy Bisento $1,200,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Bisento")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Buy Soul Cane $750,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Soul Cane")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Buy Pole V2 5,000F",
     Callback = function()
         game.ReplicatedStorage.Remotes.CommF_:InvokeServer("ThunderGodTalk")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Buy Slingshot $5,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Slingshot")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Buy Musket $8,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Musket")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Buy Flintlock $10,500",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Flintlock")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Refined Slingshot $30,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Refined Flintlock")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Buy Refined Flintlock $65,000",
     Callback = function()
         local tbl2 = {"BuyItem", "Refined Flintlock"}
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(tbl2))
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Buy Cannon $100,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Cannon")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Buy Kabucha 1,500F",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward", "Slingshot", "1")
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward", "Slingshot", "2")
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Buy Bizarre Rifle 250 Ectoplasm",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Ectoplasm", "Buy", 1)
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Buy Black Cape $50,000",
     Callback = function()
         local tbl2 = {"BuyItem", "Black Cape"}
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(tbl2))
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Swordsman Hat $150,000",
     Callback = function()
         local tbl2 = {"BuyItem", "Swordsman Hat"}
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(tbl2))
     end,
 })
-tab11:AddButton({
+__UI.tab11:AddButton({
     Title = "Buy Tomoe Ring $500,000",
     Callback = function()
         local tbl2 = {"BuyItem", "Tomoe Ring"}
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(tbl2))
     end,
 })
-local section27 = tab11:AddSection({"Reset Stats , Random Race"})
+__UI.section27 = __UI.tab11:AddSection({"Reset Stats , Random Race"})
 str34 = "ï¿½á»i Tá»c Ghoul"
 local tbl20 = {Title = str34, Description = ""}
 function str34()
@@ -15142,7 +15143,7 @@ function str34()
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(tbl2))
 end
 tbl20.Callback = str34
-tab11:AddButton(tbl20)
+__UI.tab11:AddButton(tbl20)
 str34 = "ï¿½á»i Tá»c Cyborg"
 local tbl21 = {Title = str34, Description = ""}
 function str34()
@@ -15150,7 +15151,7 @@ function str34()
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(tbl2))
 end
 tbl21.Callback = str34
-tab11:AddButton(tbl21)
+__UI.tab11:AddButton(tbl21)
 str34 = "Reset Stats 2,500F"
 local tbl22 = {Title = str34}
 function str34()
@@ -15158,7 +15159,7 @@ function str34()
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward", "Refund", "2")
 end
 tbl22.Callback = str34
-tab11:AddButton(tbl22)
+__UI.tab11:AddButton(tbl22)
 str34 = "Random Race 3,000F"
 local tbl23 = {Title = str34}
 function str34()
@@ -15166,23 +15167,23 @@ function str34()
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward", "Reroll", "2")
 end
 tbl23.Callback = str34
-tab11:AddButton(tbl23)
+__UI.tab11:AddButton(tbl23)
 str34 = "Settings Farming"
-local section28 = tab12:AddSection({str34})
+__UI.section28 = __UI.tab12:AddSection({str34})
 str34 = {}
 str35 = "Unban Fast Attack - M1 Fruit"
 str34.Title = str35
     str35 = "On"
 
 str34.Content = str35
-tab12:AddParagraph(str34)
+__UI.tab12:AddParagraph(str34)
 local v159 = game
 str34 = v159
 local httpGet = v159.HttpGet
 str35 = "https://raw.githubusercontent.com/AnhDangNhoEm/TuanAnhIOS/refs/heads/main/koby"
-local v160, v166, v170, v177, v181, v185, v189, v193, v197, v201, v205, v209, v213, v217, v221, v225, v229, v233, v237, v241, v245, v249, v253, v257, v261, v265, v269, v273, v277, v281, v285, v289, v293, v297, v301, v305, v309, v313, v317, v321, v325, v329, v333, v337, v341, v345, v349, v353, v357, v361, v365, v369, v373, v377
-v160, str34, str35, str36, flag, flag2, flag3, flag4, num11, v166, v170, v177, str37, v181, v185, v189, v193, v197, v201, v205, v209, v213, v217, v221, v225, v229, v233, v237, v241, v245, v249, v253, v257, v261, v265, v269, v273, v277, v281, v285, v289, v293, v297, v301, v305, v309, v313, v317, v321, v325, v329, v333, v337, v341, v345, v349, v353, v357, v361, v365, v369, v373, v377 = httpGet(str34, str35)
-local chunk = loadstring(v160, str34, str35, str36, flag, flag2, flag3, flag4, num11, v166, v170, v177, str37, v181, v185, v189, v193, v197, v201, v205, v209, v213, v217, v221, v225, v229, v233, v237, v241, v245, v249, v253, v257, v261, v265, v269, v273, v277, v281, v285, v289, v293, v297, v301, v305, v309, v313, v317, v321, v325, v329, v333, v337, v341, v345, v349, v353, v357, v361, v365, v369, v373, v377)
+local __dv4 = {}
+__dv4.v160 = httpGet(str34, str35)
+local chunk = loadstring(__dv4.v160)
 chunk()
 str34 = {}
 str35 = "Bring Mod"
@@ -15196,7 +15197,7 @@ function str35(value)
     StopTween(_G.BringMonster)
 end
 str34.Callback = str35
-tab12:AddToggle(str34)
+__UI.tab12:AddToggle(str34)
 spawn(function()
     while true do
         if not task.wait() then
@@ -15314,7 +15315,7 @@ function str35(value)
     _G.CheckPoint = value
 end
 str34.Callback = str35
-tab12:AddToggle(str34)
+__UI.tab12:AddToggle(str34)
 spawn(function()
     while true do
         if not wait() then
@@ -15334,7 +15335,7 @@ function str35(value)
     _G.AutoHaki = value
 end
 str34.Callback = str35
-tab12:AddToggle(str34)
+__UI.tab12:AddToggle(str34)
 spawn(function()
     while true do
         if not task.wait(0.1) then
@@ -15356,7 +15357,7 @@ function str35(value)
     _G.AutoRaceV3 = value
 end
 str34.Callback = str35
-tab12:AddToggle(str34)
+__UI.tab12:AddToggle(str34)
 spawn(function()
     while true do
         if not wait() then
@@ -15380,7 +15381,7 @@ function str35(value)
     _G.AutoRaceV4 = value
 end
 str34.Callback = str35
-tab12:AddToggle(str34)
+__UI.tab12:AddToggle(str34)
 spawn(function()
     while true do
         if not wait() then
@@ -15404,7 +15405,7 @@ function str35(arg)
     InfiniteSoru = arg
 end
 str34.Callback = str35
-tab12:AddToggle(str34)
+__UI.tab12:AddToggle(str34)
 spawn(function()
     while true do
         if not task.wait(1) then
@@ -15447,7 +15448,7 @@ function str35(arg)
     DodgewithoutCool = arg
 end
 str34.Callback = str35
-tab12:AddToggle(str34)
+__UI.tab12:AddToggle(str34)
 function NoCooldown()
     for _, v in next, getgc() do
         if typeof(v) == "function" then
@@ -15482,7 +15483,7 @@ function str35(arg)
     InfiniteGeppo = arg
 end
 str34.Callback = str35
-tab12:AddToggle(str34)
+__UI.tab12:AddToggle(str34)
 spawn(function()
     while true do
         if not task.wait(1) then
@@ -15520,7 +15521,7 @@ function str35(value)
     _G.WalkWater = value
 end
 str34.Callback = str35
-tab12:AddToggle(str34)
+__UI.tab12:AddToggle(str34)
 spawn(function()
     while true do
         if not task.wait() then
@@ -15538,7 +15539,7 @@ end)
 str34 = {}
 str35 = "Auto Increase Skill Points"
 str34[1] = str35
-local section29 = tab12:AddSection(str34)
+__UI.section29 = __UI.tab12:AddSection(str34)
 local v161 = game
 str34 = v161
 local getService = v161.GetService
@@ -15565,7 +15566,7 @@ function str37(arg)
     str36 = arg
 end
 tbl24.Callback = str37
-tab12:AddToggle(tbl24)
+__UI.tab12:AddToggle(tbl24)
 str37 = "Defense"
 local tbl25 = {Title = str37}
 str37 = "Tá»± Äá»ng NÃ¢ng Äiá»m NÄng LÆ°á»£ng"
@@ -15576,7 +15577,7 @@ function str37(arg)
     flag = arg
 end
 tbl25.Callback = str37
-tab12:AddToggle(tbl25)
+__UI.tab12:AddToggle(tbl25)
 local tbl26 = {Title = "Sword"}
 str37 = "Tá»± Äá»ng NÃ¢ng Äiá»m Kiáº¿m"
 tbl26.Description = str37
@@ -15586,7 +15587,7 @@ function str37(arg)
     flag2 = arg
 end
 tbl26.Callback = str37
-tab12:AddToggle(tbl26)
+__UI.tab12:AddToggle(tbl26)
 local tbl27 = {Title = "Gun"}
 str37 = "Tá»± Äá»ng NÃ¢ng Äiá»m SÃºng"
 tbl27.Description = str37
@@ -15596,7 +15597,7 @@ function str37(arg)
     flag3 = arg
 end
 tbl27.Callback = str37
-tab12:AddToggle(tbl27)
+__UI.tab12:AddToggle(tbl27)
 str37 = "Fruis"
 local tbl28 = {Title = str37}
 str37 = "Tá»± Äá»ng NÃ¢ng Äiá»m TrÃ¡i"
@@ -15607,7 +15608,7 @@ function str37(arg)
     flag4 = arg
 end
 tbl28.Callback = str37
-tab12:AddToggle(tbl28)
+__UI.tab12:AddToggle(tbl28)
 spawn(function()
     while true do
         if not wait() then
@@ -15636,50 +15637,50 @@ spawn(function()
     end
 end)
 str37 = "Sea 1,2,3"
-local section30 = tab12:AddSection({str37})
+__UI.section30 = __UI.tab12:AddSection({str37})
 str37 = "AddButton"
-local v171 = tab12[str37]
+local v171 = __UI.tab12[str37]
 str37 = {}
 str37.Title = "Join Sea 1"
 str37.Callback = function()
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelMain")
 end
-v171(tab12, str37)
+v171(__UI.tab12, str37)
 str37 = "AddButton"
-local v172 = tab12[str37]
+local v172 = __UI.tab12[str37]
 str37 = {}
 str37.Title = "Join Sea 2"
 str37.Callback = function()
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelDressrosa")
 end
-v172(tab12, str37)
+v172(__UI.tab12, str37)
 str37 = "AddButton"
-local v173 = tab12[str37]
+local v173 = __UI.tab12[str37]
 str37 = {}
 str37.Title = "Join Sea 3"
 str37.Callback = function()
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
 end
-v173(tab12, str37)
+v173(__UI.tab12, str37)
 str37 = {}
 str37[1] = "Other"
-local section31 = tab12:AddSection(str37)
-str37 = tab12
-tab12.AddButton(str37, {
+__UI.section31 = __UI.tab12:AddSection(str37)
+str37 = __UI.tab12
+__UI.tab12.AddButton(str37, {
     Title = "Join Pirates Team",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetTeam", "Pirates")
     end,
 })
-str37 = tab12
-tab12.AddButton(str37, {
+str37 = __UI.tab12
+__UI.tab12.AddButton(str37, {
     Title = "Join Marines Team",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetTeam", "Marines")
     end,
 })
-str37 = tab12
-tab12.AddButton(str37, {
+str37 = __UI.tab12
+__UI.tab12.AddButton(str37, {
     Title = "Open Title Name",
     Callback = function()
         local tbl2 = {"getTitles"}
@@ -15687,8 +15688,8 @@ tab12.AddButton(str37, {
         game.Players.localPlayer.PlayerGui.Main.Titles.Visible = true
     end,
 })
-str37 = tab12
-tab12.AddButton(str37, {
+str37 = __UI.tab12
+__UI.tab12.AddButton(str37, {
     Title = "FPS Boost",
     Description = "TÄng Fps",
     Callback = function()
@@ -15742,8 +15743,8 @@ tab12.AddButton(str37, {
         end
     end,
 })
-str37 = tab12
-local section32 = tab12.AddSection(str37, {"Auto Codes"})
+str37 = __UI.tab12
+__UI.section32 = __UI.tab12.AddSection(str37, {"Auto Codes"})
 str37 = {}
 local str40 = "NOMOREHACK"
 local str41 = "BANEXPLOIT"
@@ -15857,7 +15858,7 @@ str37[59] = "SUB2NOOBMASTER123"
 str37[60] = "SUB2UNCLEKIZARU"
 str37[61] = "TANTAIGAMING"
 str37[62] = "THEGREATACE"
-tab12:AddButton({
+__UI.tab12:AddButton({
     Title = "Codes",
     Description = "Tá»± Äá»ng Nháº­p Háº¿t Code",
     Callback = function()
@@ -15872,14 +15873,14 @@ tab12:AddButton({
         end
     end,
 })
-local section33 = tab12:AddSection({"Sever Hop"})
-tab12:AddButton({
+__UI.section33 = __UI.tab12:AddSection({"Sever Hop"})
+__UI.tab12:AddButton({
     Title = "Rejoin Server",
     Callback = function()
         game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
     end,
 })
-tab12:AddButton({
+__UI.tab12:AddButton({
     Title = "Server Hop",
     Callback = function()
         Hop()
